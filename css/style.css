@@ -129,7 +129,7 @@ a { color: var(--green-700); }
   color: var(--green-900);
   min-width: 0;
 }
-.logo-mark { flex: none; display: block; }
+.logo-mark { flex: none; display: block; width: 40px; height: 40px; }
 .logo-text { display: flex; flex-direction: column; min-width: 0; }
 .logo-text strong { font-size: 1.02rem; line-height: 1.25; }
 .logo-text small {
@@ -678,6 +678,34 @@ body { padding-bottom: 24px; }
 }
 
 /* ------------------------------ coming soon -------------------------------- */
+
+.hero-badge {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  color: var(--ink-soft);
+}
+
+.btn-call { color: var(--green-800); }
+.btn-call:hover { background: var(--green-100); }
+
+.contact-fb {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  font-weight: 600;
+}
+.contact-fb img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .35);
+}
 
 .coming-soon {
   display: inline-block;

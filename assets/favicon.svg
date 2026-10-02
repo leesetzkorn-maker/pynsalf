@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="7" fill="#1f4d3d"/>
-  <path d="M16 6c5 3.5 7 7 7 10.5A7 7 0 0 1 9 16.5C9 13 11 9.5 16 6Z" fill="#c8873c"/>
-  <path d="M16 11v11" stroke="#fdfaf4" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="16" cy="16" r="16" fill="#16392d"/>
+  <text x="16" y="16.5" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia, 'Times New Roman', serif" font-size="15" font-weight="700"
+        fill="#fdfaf4">PS</text>
 </svg>

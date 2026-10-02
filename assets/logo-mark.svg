@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="PS PynSalf">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c6a53"/>
+      <stop offset="100%" stop-color="#16392d"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="32" fill="url(#g)"/>
+  <path d="M32 50c6.6 0 11.5-4.6 11.5-10.6 0-7.3-6.6-13.4-11.5-18.4-4.9 5-11.5 11.1-11.5 18.4C20.5 45.4 25.4 50 32 50Z" fill="#c8873c" opacity=".28"/>
+  <text x="32" y="33" text-anchor="middle" dominant-baseline="central"
+        font-family="Georgia, 'Times New Roman', serif" font-size="27" font-weight="700"
+        letter-spacing="0.5" fill="#fdfaf4">PS</text>
+</svg>
