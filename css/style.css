@@ -288,10 +288,12 @@ a { color: var(--green-700); }
 /* ----------------------------------- hero ---------------------------------- */
 
 .hero {
-  padding: 36px 0 52px;
+  position: relative;
+  overflow: hidden;
+  padding: 44px 0 52px;
   background:
-    radial-gradient(1100px 480px at 88% -10%, #f4ead9 0%, rgba(244, 234, 217, 0) 62%),
-    var(--sand-50);
+    radial-gradient(760px 500px at 92% 4%, rgba(200, 162, 74, .22) 0%, rgba(200, 162, 74, 0) 68%),
+    linear-gradient(125deg, var(--green-900) 0%, #1a4536 62%, var(--green-800) 100%);
 }
 
 .hero-inner {
@@ -307,11 +309,48 @@ a { color: var(--green-700); }
   max-width: 55ch;
 }
 
+.hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #c8a24a;
+  color: #1c2b23;
+  letter-spacing: .08em;
+}
+
+.hero h1 {
+  max-width: 18ch;
+  margin-bottom: 14px;
+  color: var(--white);
+  font-size: clamp(2rem, 5vw, 3.45rem);
+}
+
+.hero .lead {
+  color: rgba(255, 255, 255, .88);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin: 24px 0 0;
+}
+
+.hero-actions .btn-whatsapp {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+
+.hero-actions .btn-outline {
+  background: transparent;
+  color: var(--white);
+  border-color: #d4af37;
+}
+
+.hero-actions .btn-outline:hover {
+  background: rgba(255, 255, 255, .1);
 }
 
 /* ---------------------------------- cards ---------------------------------- */
@@ -665,10 +704,10 @@ a { color: var(--green-700); }
 .hero-media {
   position: relative;
   background: linear-gradient(180deg, #ffffff 0%, #fbf6ee 100%);
-  border: 1px solid var(--sand-200);
+  border: 1px solid rgba(212, 175, 55, .42);
   border-radius: var(--radius);
   padding: 12px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, .24), 0 0 38px rgba(212, 175, 55, .12);
   /* capped so the jar stays prominent on a tablet instead of filling the width */
   max-width: 480px;
   margin-inline: auto;
@@ -996,7 +1035,10 @@ a { color: var(--green-700); }
   .primary-nav a:not(.btn) { padding: 12px 0; font-size: .96rem; }
   .nav-cta { margin-top: 0; }
 
-  .hero { padding: 60px 0 72px; }
+  .hero {
+    min-height: min(760px, calc(100vh - var(--header-h)));
+    padding: 60px 0 72px;
+  }
   /* the product gets the larger share, so it leads the page */
   .hero-inner {
     grid-template-columns: 1fr 1.08fr;
