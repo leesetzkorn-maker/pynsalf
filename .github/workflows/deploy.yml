@@ -25,15 +25,17 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
+      - name: Stage site files
+        run: |
+          mkdir -p _site/assets _site/css _site/js
+          cp index.html _site/
+          cp css/style.css _site/css/
+          cp js/main.js _site/js/
+          cp assets/* _site/assets/
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          # publish only the website files
-          path: |
-            .
-            !.git
-            !.github
-            !.gitignore
-            !CONTENT.md
+          path: '_site'
 
       - id: deployment
         uses: actions/deploy-pages@v4
