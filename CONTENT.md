@@ -25,8 +25,9 @@ Nothing is blocking the site. These are the details to add when you have them:
 ## Facebook
 
 `assets/facebook-avatar.jpg` is the supplied profile photo, resized to 200x200.
-The Contact section shows it next to "Find us on Facebook", but it is **not a link**
-because the real page URL is unknown. To make it clickable, add an `href` in
+The Contact section shows it beside "Facebook profile", but it is **not a link**
+because the real page URL is unknown. Do not link it until the page URL is confirmed.
+To make it clickable, add an `href` in
 `index.html` on the `.contact-fb` span:
 
 ```html
