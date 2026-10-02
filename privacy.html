@@ -21,11 +21,11 @@
   <header><div><a href="./">PS PynSalf</a></div></header>
   <main>
     <h1>Privacy &amp; website analytics</h1>
-    <p>This notice explains the limited analytics planned for this website. The analytics service is optional and will collect events only after it has been configured by the site owner.</p>
+    <p>This notice explains the privacy-limited analytics currently used on this website and how to opt out in this browser.</p>
     <h2>What the dashboard measures</h2>
-    <p>When enabled, the site records page views and clicks on WhatsApp, phone, email and Facebook links. It groups counts by date, broad device type and, when Cloudflare provides it, country. It does not collect form contents, names, phone numbers, email addresses or precise location.</p>
+    <p>The site records page views and clicks on WhatsApp, phone, email and Facebook links. It groups counts by date, broad device type and, when Cloudflare provides it, country. It does not collect form contents, names, phone numbers, email addresses or precise location.</p>
     <h2>Browser identifier and retention</h2>
-    <p>To estimate unique and returning visitors, this browser stores a random identifier in local storage. The analytics service stores a keyed HMAC of that identifier, rather than the original value; this is pseudonymous data, not a direct identity. Records are retained for up to 400 days. Clear this site's browser storage to remove the local identifier.</p>
+    <p>To estimate unique and returning visitors, this browser stores a random identifier in local storage while analytics are active. The analytics service stores a keyed HMAC of that identifier, rather than the original value; this is pseudonymous data, not a direct identity. Records are retained for up to 400 days. Clear this site's browser storage to remove the local identifier.</p>
     <p>A short-lived keyed HMAC of the request IP address is used to limit automated event submissions and sign-in attempts. The analytics database does not store raw IP addresses. Cloudflare may process connection information to operate its service under its own terms.</p>
     <section class="card" aria-labelledby="choice-title">
       <h2 id="choice-title">Your analytics choice</h2>
@@ -45,7 +45,7 @@
           var optedOut = localStorage.getItem('ps_analytics_opt_out') === '1';
           status.textContent = optedOut
             ? 'Analytics are opted out on this browser.'
-            : 'Analytics are enabled on this browser when the service is configured.';
+            : 'Analytics are active on this browser unless you opt out below.';
           button.textContent = optedOut ? 'Allow analytics on this browser' : 'Opt out of analytics on this browser';
         } catch (_) {
           status.textContent = 'This browser does not allow storage, so this preference cannot be saved.';
@@ -68,5 +68,7 @@
       render();
     })();
   </script>
+  <script src="js/admin-config.js"></script>
+  <script src="js/analytics.js"></script>
 </body>
 </html>
