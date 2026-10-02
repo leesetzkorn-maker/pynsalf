@@ -29,6 +29,7 @@ jobs:
         run: |
           mkdir -p _site/assets _site/css _site/js
           cp index.html _site/
+          cp robots.txt sitemap.xml _site/
           cp css/style.css _site/css/
           cp js/main.js _site/js/
           cp assets/* _site/assets/

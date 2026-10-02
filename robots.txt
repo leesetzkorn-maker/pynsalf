@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# PS PynSalf - natural topical & body care, South Africa
+# https://leesetzkorn-maker.github.io/pynsalf/
+
+Sitemap: https://leesetzkorn-maker.github.io/pynsalf/sitemap.xml

@@ -3,6 +3,17 @@
 The site is live at https://leesetzkorn-maker.github.io/pynsalf/
 Every push to `main` republishes automatically via GitHub Actions.
 
+## Search indexing
+
+`sitemap.xml` lists the canonical homepage and its Open Graph image and is copied
+into the Pages artifact by `.github/workflows/deploy.yml`. Update it when
+additional public pages are added.
+The repository's `robots.txt` allows crawling and names the sitemap. It is
+published at `/pynsalf/robots.txt`. Because this is a GitHub Pages project site,
+that file cannot control host-root robots rules; Google's host-root
+`robots.txt` currently returns 404, which does not block crawling. Host-level
+rules would need to be managed on the GitHub Pages domain root or a custom domain.
+
 ## Brand
 
 - Business / product name: **PS PynSalf** ("PS" = PynSalf, stated explicitly on the page)
@@ -83,23 +94,49 @@ The copy stays deliberately careful: "soothing", "topical care", "designed for",
 testimonials or ratings. The customer's review appears as their own screenshot,
 unedited. Add stronger wording only when you can support it.
 
+The hero `<h1>` is now **PS PynSalf Natural Topical & Body Care**, which targets
+search rather than the old "Natural Care for Everyday Aches & Discomfort". That
+phrase still appears lower down in the About and Benefits sections, so the older
+"aches and discomfort" wording has not been dropped from the page.
+
+The "Everyday Skin & Body Care, Written Plainly" section deliberately answers
+search-shaped questions (dry skin, skin texture, ageing skin, appearance of fine
+lines / stretch marks / cellulite) and then says plainly that none of it is a
+medical claim. Appearance-type topics always use "the appearance of ..." — never a
+statement that the product treats them. Keep the closing note that PS PynSalf is a
+body care product and not a medicine.
+
 Do not claim that PS PynSalf treats or cures cancer, stroke, Bell's palsy, or
 other medical conditions without reliable product-specific clinical evidence and
 appropriate regulatory authorisation. The site explicitly warns visitors not to
 delay or replace medical care.
 
+## Published on the owner's instruction
+
+Added 2 Oct 2026 at the owner's explicit request, overriding the earlier advice to
+suppress them. They are live:
+
+- **Our 100% Money-Back Guarantee** with the owner's wording: every 350ml jar
+  filled by hand, roughly 5000 clients to date, only 7 jars returned for a refund,
+  money back if not satisfied, no hassle.
+- The accompanying scope line: *"This guarantee is about your money, not medical
+  results."* That sentence is the reason the guarantee is safe to publish — it ties
+  the promise to the refund and explicitly disclaims any outcome claim. **Do not
+  remove it.**
+
+Both are pinned verbatim by the static checker, so they cannot be reworded by
+accident.
+
 ### Deliberately not published
 
-These were drafted by the owner on 2 Oct 2026 and then **excluded on purpose**.
-Do not add them back without confirming they can be honoured:
+These are still excluded. Do not add them without confirming they can be honoured:
 
 | Claim | Why it is not on the site |
 |---|---|
-| "Our Handmade Guarantee — 100% happy or full refund" | A published refund promise is a real commitment under the Consumer Protection Act. It also contradicted the existing results disclaimer. |
-| "About 5000 clients, only 7 refunds" | Unverifiable statistic, and it implies refunds are an expected outcome. |
 | "to demonstrate what is possible with regular use" | Turned the before/after photos into an implied efficacy promise. |
 | "POPIA Compliant" | Formal compliance assertion. Only publish once the business is actually compliant. |
 | "trusted by the community / proof in the pudding" | Unverifiable praise. |
+| Ingredients, price, directions from the label | Not supplied yet — see the table above. |
 
 The consent wording for the customer photos *is* published, because the photos were
 already live and the owner supplied that wording. Keep it accurate: if consent for
@@ -128,5 +165,27 @@ check the site at 360px, 390px, 768px and 1280px wide:
 
 - WhatsApp: https://wa.me/27723973400 (shown as 072 397 3400)
   Prefilled message: "Hi, I'd like to know more about PS PynSalf."
-- Phone: tel:+27723973400
+- Phone: tel:0723973400 — local format, so it dials correctly on a South African handset
 - Email: gustavsetzkorn99@gmail.com
+
+## SEO metadata
+
+`index.html` carries the canonical URL, meta description, Open Graph tags, Twitter
+card and JSON-LD. Two rules protect it from drift:
+
+- `<title>`, `og:title` and `twitter:title` must stay identical, and `og:description`
+  must match the meta description. The static checker fails if they diverge.
+- The title/description wording is **the owner's to curate**. The checker asserts
+  length and required terms (brand, "topical", "body care", "South Africa",
+  "350ml") rather than an exact string, so re-wording them is safe.
+
+`og:image` points at `assets/og-image.png` — a 1200x630 PNG, not the SVG, because
+Facebook and WhatsApp do not render SVG previews. The checker enforces `.png` and
+that the file exists. Regenerate it with the `ogimage.js` script kept outside the
+repo if the jar artwork or wording changes.
+
+The JSON-LD `@graph` deliberately contains **no** `offers`, `aggregateRating`,
+`review` or postal address, because no price, ratings or address have been
+confirmed. That means no rich product result in Google — that is the honest
+trade-off, and adding those fields without real data would be a fabricated
+structured-data claim.
