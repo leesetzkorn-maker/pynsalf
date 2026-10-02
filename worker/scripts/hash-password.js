@@ -1,7 +1,7 @@
 import { stdin, stdout } from 'node:process';
 import { randomBytes, pbkdf2Sync } from 'node:crypto';
 
-const iterations = 310_000;
+const iterations = 100_000;
 function readHiddenPassword() {
   if (!stdin.isTTY || typeof stdin.setRawMode !== 'function') {
     throw new Error('Run this command in an interactive terminal so the password is not echoed.');

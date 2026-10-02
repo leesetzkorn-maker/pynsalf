@@ -46,7 +46,7 @@ const db = new LocalD1();
 db.sqlite.exec(await readFile(new URL('../schema.sql', import.meta.url), 'utf8'));
 const password = randomBytes(24).toString('base64url');
 const salt = randomBytes(16);
-const hash = pbkdf2Sync(password, salt, 1_000, 32, 'sha256');
+const hash = pbkdf2Sync(password, salt, 100_000, 32, 'sha256');
 const origin = 'https://analytics.example';
 const env = {
   DB: db,
@@ -54,7 +54,7 @@ const env = {
   SITE_ORIGIN: 'https://leesetzkorn-maker.github.io',
   ENVIRONMENT: 'production',
   RETENTION_DAYS: '400',
-  ADMIN_PASSWORD_HASH: `pbkdf2$1000$${salt.toString('base64')}$${hash.toString('base64')}`,
+  ADMIN_PASSWORD_HASH: `pbkdf2$100000$${salt.toString('base64')}$${hash.toString('base64')}`,
   SESSION_SECRET: randomBytes(32).toString('base64'),
   ANALYTICS_SALT: randomBytes(32).toString('base64'),
 };

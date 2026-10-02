@@ -73,7 +73,10 @@ export async function verifyPassword(password, stored) {
       expected.length * 8,
     );
     return timingSafeEqual(bytesToB64(new Uint8Array(bits)), parts[3]);
-  } catch {
+  } catch (err) {
+    console.error('Password verification failed', {
+      error: err instanceof Error ? err.name : 'UnknownError',
+    });
     return false;
   }
 }

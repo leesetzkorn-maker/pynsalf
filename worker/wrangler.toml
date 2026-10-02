@@ -1,6 +1,6 @@
 name = "pynsalf-private-analytics"
 main = "src/index.js"
-compatibility_date = "2025-04-01"
+compatibility_date = "2026-10-02"
 workers_dev = true
 
 [assets]
@@ -16,7 +16,7 @@ ENVIRONMENT = "production"
 [[d1_databases]]
 binding = "DB"
 database_name = "pynsalf-analytics"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "caca79d1-4591-470d-8e7d-fda34a71d0a5"
 
 [triggers]
 crons = ["17 0 * * *"]

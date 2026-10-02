@@ -372,7 +372,7 @@ async function getDashboardStats(db, retentionDays) {
 }
 
 async function adminHtmlResponse(request, env) {
-  const response = await env.ASSETS.fetch(new Request(new URL('/admin.html', request.url), request));
+  const response = await env.ASSETS.fetch(new Request(new URL('/admin', request.url), request));
   const headers = new Headers(response.headers);
   headers.set('Cache-Control', 'no-store');
   headers.set('Content-Security-Policy', "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'");
