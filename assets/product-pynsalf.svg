@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" width="640" height="800" role="img" aria-label="PS PynSalf natural topical ointment jar, labelled PS, PynSalf and Natural Ingredients">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" width="640" height="800" role="img" aria-label="PS PynSalf natural topical ointment in a 350ml jar with a lid, labelled PS, PynSalf, Natural Ingredients and Topical Body Care">
   <defs>
     <!-- studio backdrop -->
     <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
@@ -148,12 +148,11 @@
           font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18"
           font-weight="700" letter-spacing="0.5" fill="#6b6257">TOPICAL BODY CARE</text>
 
-    <!-- leaf sprig -->
-    <g opacity=".85">
-      <path d="M320 608 v-26" stroke="#2b6852" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <path d="M320 590 c 11 -2 15 -9 15 -16 c -9 0 -15 5 -15 16 Z" fill="#2b6852"/>
-      <path d="M320 600 c -11 -2 -15 -9 -15 -16 c 9 0 15 5 15 16 Z" fill="#3d7f66"/>
-    </g>
+    <!-- jar volume (replaces the old decorative sprig: real product info).
+     Sized so it stays readable on a phone, where the jar renders ~295px wide. -->
+    <text x="320" y="596" text-anchor="middle"
+          font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="30"
+          font-weight="700" letter-spacing="1" fill="#2f5a47">350 ml</text>
 
     <!-- ================= LID ================= -->
     <!-- skirt / rim -->
