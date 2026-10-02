@@ -1,0 +1,22 @@
+name = "pynsalf-private-analytics"
+main = "src/index.js"
+compatibility_date = "2025-04-01"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[vars]
+SITE_ORIGIN = "https://leesetzkorn-maker.github.io"
+RETENTION_DAYS = "400"
+ENVIRONMENT = "production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pynsalf-analytics"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[triggers]
+crons = ["17 0 * * *"]

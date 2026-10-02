@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#14372c">
+  <title>Private dashboard | PS PynSalf</title>
+  <style>
+    :root{color-scheme:light;--green:#14372c;--green2:#1f4d3d;--cream:#fbf8f3;--sand:#e6dacb;--ink:#23302b;--muted:#66736c;--white:#fff;--radius:14px}
+    *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input{font:inherit}a{color:var(--green2)}.shell{width:min(1180px,100% - 32px);margin:auto}
+    header{background:var(--green);color:var(--white);padding:18px 0}.head{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:1.15rem;font-weight:750}.brand small{display:block;color:#c6d8ce;font-size:.8rem;font-weight:450}
+    main{padding:32px 0 60px}h1{font-size:clamp(1.6rem,4vw,2.1rem);line-height:1.2;margin:0 0 8px;color:var(--green)}h2{font-size:1.2rem;margin:0 0 16px;color:var(--green)}.intro{margin:0 0 24px;color:var(--muted)}
+    .panel,.metric{background:var(--white);border:1px solid var(--sand);border-radius:var(--radius);box-shadow:0 2px 10px #14372c0d}
+    .login{max-width:430px;margin:9vh auto;padding:28px}.login p{color:var(--muted)}label{display:block;font-weight:650;margin:18px 0 6px}input{display:block;width:100%;padding:12px;border:1px solid #b9c5be;border-radius:8px;background:white}
+    .btn{border:0;border-radius:9px;padding:11px 17px;background:var(--green2);color:white;font-weight:700;cursor:pointer}.btn:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #c8873c;outline-offset:2px}.login .btn{width:100%;margin-top:18px}.error{min-height:1.5em;color:#a12727}
+    .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.toolbar .btn{background:transparent;border:1px solid var(--green2);color:var(--green)}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.metric{padding:18px}.metric-label{color:var(--muted);font-size:.88rem}.metric-value{font-size:clamp(1.5rem,4vw,2rem);font-weight:760;color:var(--green);line-height:1.3}.metric small{color:var(--muted)}
+    .periods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:14px 0 24px}.panel{padding:22px;margin:18px 0}.panel-sub{margin:-8px 0 14px;color:var(--muted);font-size:.9rem}
+    .clicks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.click-card{background:#f5f1e9;padding:14px;border-radius:10px}.click-card strong{display:block;color:var(--green);font-size:1.35rem}.chart{height:190px;display:flex;align-items:end;gap:4px;border-bottom:1px solid var(--sand);padding:8px 0 0;overflow:hidden}.bar-col{height:100%;flex:1;min-width:4px;display:flex;align-items:end;position:relative}.bar{width:100%;min-height:2px;background:#438367;border-radius:4px 4px 0 0}.bar-col:hover .bar{background:#c8873c}.chart-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-top:6px}
+    .table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem;white-space:nowrap}th,td{text-align:left;padding:10px 9px;border-bottom:1px solid #eee8df}th{color:var(--green);font-weight:700;background:#f8f5ef}td.num{text-align:right;font-variant-numeric:tabular-nums} .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.list{list-style:none;margin:0;padding:0}.list li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #eee8df}.muted{color:var(--muted)}.privacy{font-size:.88rem;color:var(--muted);padding-top:12px}
+    @media(max-width:800px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.clicks{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
+    @media(max-width:480px){.shell{width:calc(100% - 24px)}main{padding-top:22px}.panel{padding:16px}.metric{padding:14px}.periods{gap:8px}.periods .metric{padding:11px}.periods .metric-label{font-size:.8rem}.chart{height:150px}.toolbar{align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <header><div class="shell head"><div class="brand">PS PynSalf<small>Private analytics dashboard</small></div><a href="https://leesetzkorn-maker.github.io/pynsalf/" style="color:white">Public website</a></div></header>
+  <main class="shell">
+    <section id="login" class="panel login" hidden>
+      <h1>Admin sign in</h1>
+      <p>This dashboard is private. Sign in with the administrator password.</p>
+      <form id="login-form">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <p id="login-error" class="error" role="alert"></p>
+        <button class="btn" type="submit">Sign in</button>
+      </form>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="toolbar"><div><h1>Website analytics</h1><p class="intro">Privacy-limited aggregate activity · last 13 months retained</p></div><button id="logout" class="btn" type="button">Sign out</button></div>
+      <div class="metrics">
+        <article class="metric"><div class="metric-label">Unique visitors</div><div class="metric-value" id="total-visitors">—</div><small>retained period</small></article>
+        <article class="metric"><div class="metric-label">Page views</div><div class="metric-value" id="page-views">—</div><small>retained period</small></article>
+        <article class="metric"><div class="metric-label">WhatsApp clicks</div><div class="metric-value" id="whatsapp-total">—</div><small>retained period</small></article>
+        <article class="metric"><div class="metric-label">Phone clicks</div><div class="metric-value" id="phone-total">—</div><small>retained period</small></article>
+      </div>
+      <div class="periods">
+        <article class="metric"><div class="metric-label">Today</div><div id="today-summary" class="muted">—</div></article>
+        <article class="metric"><div class="metric-label">This week</div><div id="week-summary" class="muted">—</div></article>
+        <article class="metric"><div class="metric-label">This month</div><div id="month-summary" class="muted">—</div></article>
+      </div>
+      <section class="panel">
+        <h2>Traffic over time</h2><p class="panel-sub">Daily visitors and page views · South African dates</p>
+        <div id="traffic-chart" class="chart" role="img" aria-label="Daily page view chart"></div>
+        <div class="chart-labels"><span id="chart-start">30 days ago</span><span>Today</span></div>
+      </section>
+      <section class="panel">
+        <h2>CTA clicks</h2><p class="panel-sub">Total clicks during the retained period</p>
+        <div class="clicks">
+          <div class="click-card">WhatsApp<strong id="whatsapp-clicks">—</strong></div>
+          <div class="click-card">Phone<strong id="phone-clicks">—</strong></div>
+          <div class="click-card">Email<strong id="email-clicks">—</strong></div>
+          <div class="click-card">Facebook<strong id="facebook-clicks">—</strong></div>
+        </div>
+      </section>
+      <div class="split">
+        <section class="panel"><h2>Devices</h2><p class="panel-sub">Page views during the last 30 days</p><ul id="devices" class="list"></ul></section>
+        <section class="panel"><h2>Location</h2><p class="panel-sub">Country-level edge estimate only; no IP addresses or precise location stored</p><ul id="countries" class="list"></ul></section>
+      </div>
+      <section class="panel"><h2>Recent activity</h2><p class="panel-sub">Daily event totals; no individual visitor activity is shown.</p><ul id="recent" class="list"></ul></section>
+      <section class="panel"><h2>Daily analytics · last 30 days</h2><div class="table-wrap">
+        <table><thead><tr><th>Date</th><th>Visitors</th><th>Page views</th><th>WhatsApp</th><th>Phone</th><th>Email</th><th>Facebook</th></tr></thead><tbody id="daily-rows"></tbody></table>
+      </div>      <p class="privacy">Returning-visitor counts use a random browser ID that is HMAC-protected and not linked to contact details. Counts may be lower when browser storage is cleared or a visitor uses another device.</p></section>
+      <p id="dashboard-error" class="error" role="alert"></p>
+    </section>
+  </main>
+  <script>
+    (function () {
+      'use strict';
+      var login = document.getElementById('login');
+      var dashboard = document.getElementById('dashboard');
+      var errorBox = document.getElementById('dashboard-error');
+      var number = new Intl.NumberFormat('en-ZA');
+      function text(id, value) { document.getElementById(id).textContent = value; }
+      function showLogin(message) {
+        dashboard.hidden = true;
+        login.hidden = false;
+        document.getElementById('login-error').textContent = message || '';
+      }
+      function periodText(stats) {
+        return number.format(stats.visitors) + ' visitors · ' + number.format(stats.pageViews) +
+          ' views · ' + number.format(stats.newVisitors) + ' new · ' +
+          number.format(stats.returningVisitors) + ' returning';
+      }
+      function renderList(id, items, labelFn, valueFn) {
+        var list = document.getElementById(id);
+        list.replaceChildren();
+        if (!items.length) {
+          var empty = document.createElement('li');
+          empty.className = 'muted';
+          empty.textContent = 'No data yet';
+          list.appendChild(empty);
+          return;
+        }
+        items.forEach(function (item) {
+          var li = document.createElement('li');
+          var label = document.createElement('span');
+          var value = document.createElement('strong');
+          label.textContent = labelFn(item);
+          value.textContent = valueFn(item);
+          li.append(label, value);
+          list.appendChild(li);
+        });
+      }
+      function render(data) {
+        text('total-visitors', number.format(data.overview.totalVisitors));
+        text('page-views', number.format(data.overview.pageViews));
+        text('whatsapp-total', number.format(data.clicks.whatsapp));
+        text('phone-total', number.format(data.clicks.phone));
+        text('today-summary', periodText(data.periods.today));
+        text('week-summary', periodText(data.periods.week));
+        text('month-summary', periodText(data.periods.month));
+        text('whatsapp-clicks', number.format(data.clicks.whatsapp));
+        text('phone-clicks', number.format(data.clicks.phone));
+        text('email-clicks', number.format(data.clicks.email));
+        text('facebook-clicks', number.format(data.clicks.facebook));
+
+        var chart = document.getElementById('traffic-chart');
+        chart.replaceChildren();
+        var max = Math.max(1, ...data.daily.map(function (d) { return d.pageViews; }));
+        data.daily.forEach(function (d) {
+          var col = document.createElement('div');
+          var bar = document.createElement('div');
+          col.className = 'bar-col';
+          col.title = d.date + ': ' + d.visitors + ' visitors, ' + d.pageViews + ' page views';
+          bar.className = 'bar';
+          bar.style.height = Math.max(d.pageViews ? 4 : 0, d.pageViews / max * 100) + '%';
+          col.appendChild(bar);
+          chart.appendChild(col);
+        });
+        if (data.daily.length) text('chart-start', data.daily[0].date);
+        renderList('devices', data.devices, function (r) {
+          return (r.device || 'unknown').replace(/^./, function (c) { return c.toUpperCase(); });
+        }, function (r) { return number.format(r.pageViews) + ' views'; });
+        renderList('countries', data.countries, function (r) {
+          return r.country === 'ZA' ? 'South Africa' : r.country;
+        }, function (r) { return number.format(r.visitors) + ' visitors'; });
+        renderList('recent', data.recentActivity, function (r) {
+          return r.day;
+        }, function (r) { return number.format(r.events) + ' events'; });
+
+        var body = document.getElementById('daily-rows');
+        body.replaceChildren();
+        data.daily.slice().reverse().forEach(function (r) {
+          var tr = document.createElement('tr');
+          [r.date, r.visitors, r.pageViews, r.whatsappClicks, r.phoneClicks, r.emailClicks, r.facebookClicks]
+            .forEach(function (value, index) {
+              var cell = document.createElement('td');
+              if (index) cell.className = 'num';
+              cell.textContent = index ? number.format(value) : value;
+              tr.appendChild(cell);
+            });
+          body.appendChild(tr);
+        });
+      }
+      async function request(path, options) {
+        var response = await fetch(path, Object.assign({ credentials: 'same-origin', cache: 'no-store' }, options || {}));
+        var data = await response.json().catch(function () { return {}; });
+        if (!response.ok) {
+          var error = new Error(data.error || 'The request failed.');
+          error.status = response.status;
+          throw error;
+        }
+        return data;
+      }
+      async function loadDashboard() {
+        login.hidden = true;
+        dashboard.hidden = false;
+        errorBox.textContent = '';
+        try {
+          render(await request('/api/admin/stats'));
+        } catch (err) {
+          if (err.status === 401) return showLogin('Please sign in to view the private dashboard.');
+          errorBox.textContent = err.message || 'Could not load analytics.';
+        }
+      }
+      document.getElementById('login-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        var button = event.currentTarget.querySelector('button');
+        button.disabled = true;
+        try {
+          await request('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: document.getElementById('password').value }),
+          });
+          document.getElementById('password').value = '';
+          await loadDashboard();
+        } catch (err) {
+          document.getElementById('login-error').textContent = err.message || 'Sign in failed.';
+        } finally {
+          button.disabled = false;
+        }
+      });
+      document.getElementById('logout').addEventListener('click', async function () {
+        try {
+          await request('/api/auth/logout', { method: 'POST' });
+          showLogin('You have been signed out.');
+        } catch (err) {
+          errorBox.textContent = err.message || 'Sign out failed.';
+        }
+      });
+      request('/api/admin/session').then(function () {
+        return loadDashboard();
+      }).catch(function (err) {
+        if (err.status === 401) showLogin('');
+        else showLogin(err.message || 'The admin service is unavailable.');
+      });
+    })();
+  </script>
+</body>
+</html>

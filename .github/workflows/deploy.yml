@@ -27,11 +27,13 @@ jobs:
 
       - name: Stage site files
         run: |
-          mkdir -p _site/assets _site/css _site/js
+          mkdir -p _site/assets _site/css _site/js _site/admin
           cp index.html _site/
+          cp privacy.html _site/
           cp robots.txt sitemap.xml _site/
           cp css/style.css _site/css/
-          cp js/main.js _site/js/
+          cp js/*.js _site/js/
+          cp admin/index.html _site/admin/
           cp assets/* _site/assets/
 
       - uses: actions/upload-pages-artifact@v3

@@ -14,3 +14,13 @@ node_modules/
 /review.jpg
 # OCR language data (local tooling only)
 eng.traineddata
+
+# --- admin dashboard secrets: NEVER commit these ---
+# .dev.vars holds local-only Worker secrets (password hash, session key, salt).
+worker/.dev.vars
+worker/.dev.vars.*
+worker/.wrangler/
+worker/node_modules/
+# Anything that looks like a credential
+*.pem
+secrets*.json

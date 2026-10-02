@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#14372c">
+  <title>Privacy &amp; analytics | PS PynSalf</title>
+  <meta name="description" content="How PS PynSalf handles optional, privacy-limited website analytics and how to opt out.">
+  <link rel="canonical" href="https://leesetzkorn-maker.github.io/pynsalf/privacy.html">
+  <style>
+    :root{color-scheme:light;--green:#14372c;--green2:#1f4d3d;--cream:#fbf8f3;--sand:#e6dacb;--ink:#23302b;--muted:#55635c}
+    *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+    header{background:var(--green);color:white;padding:18px 0}header div,main,footer{width:min(760px,calc(100% - 32px));margin:auto}
+    header a{color:white;text-decoration:none;font-weight:750}main{padding:40px 0 56px}h1,h2{color:var(--green);line-height:1.2}h1{font-size:clamp(1.8rem,5vw,2.5rem)}h2{font-size:1.25rem;margin-top:30px}
+    .card{padding:20px;background:white;border:1px solid var(--sand);border-radius:14px;margin:22px 0}.btn{border:0;border-radius:9px;padding:12px 16px;background:var(--green2);color:white;font:inherit;font-weight:700;cursor:pointer}
+    .status{min-height:1.6em;color:var(--muted);margin-top:10px}.muted{color:var(--muted)}footer{border-top:1px solid var(--sand);padding:18px 0 26px}a{color:var(--green2)}
+  </style>
+</head>
+<body>
+  <header><div><a href="./">PS PynSalf</a></div></header>
+  <main>
+    <h1>Privacy &amp; website analytics</h1>
+    <p>This notice explains the limited analytics planned for this website. The analytics service is optional and will collect events only after it has been configured by the site owner.</p>
+    <h2>What the dashboard measures</h2>
+    <p>When enabled, the site records page views and clicks on WhatsApp, phone, email and Facebook links. It groups counts by date, broad device type and, when Cloudflare provides it, country. It does not collect form contents, names, phone numbers, email addresses or precise location.</p>
+    <h2>Browser identifier and retention</h2>
+    <p>To estimate unique and returning visitors, this browser stores a random identifier in local storage. The analytics service stores a keyed HMAC of that identifier, rather than the original value; this is pseudonymous data, not a direct identity. Records are retained for up to 400 days. Clear this site's browser storage to remove the local identifier.</p>
+    <p>A short-lived keyed HMAC of the request IP address is used to limit automated event submissions and sign-in attempts. The analytics database does not store raw IP addresses. Cloudflare may process connection information to operate its service under its own terms.</p>
+    <section class="card" aria-labelledby="choice-title">
+      <h2 id="choice-title">Your analytics choice</h2>
+      <p id="choice" class="muted" role="status">Checking this browser…</p>
+      <p class="muted">Opting out stops future analytics from this browser. Existing aggregate records remain until their normal deletion.</p>
+      <button id="toggle" class="btn" type="button">Opt out of analytics on this browser</button>
+    </section>
+    <p class="muted">This page describes the website's analytics design; it is not legal advice. For questions about the product, contact PS PynSalf through the links on the <a href="./">main website</a>.</p>
+  </main>
+  <footer><a href="./">Back to PS PynSalf</a></footer>
+  <script>
+    (function () {
+      var button = document.getElementById('toggle');
+      var status = document.getElementById('choice');
+      function render() {
+        try {
+          var optedOut = localStorage.getItem('ps_analytics_opt_out') === '1';
+          status.textContent = optedOut
+            ? 'Analytics are opted out on this browser.'
+            : 'Analytics are enabled on this browser when the service is configured.';
+          button.textContent = optedOut ? 'Allow analytics on this browser' : 'Opt out of analytics on this browser';
+        } catch (_) {
+          status.textContent = 'This browser does not allow storage, so this preference cannot be saved.';
+          button.disabled = true;
+        }
+      }
+      button.addEventListener('click', function () {
+        try {
+          if (localStorage.getItem('ps_analytics_opt_out') === '1') {
+            localStorage.removeItem('ps_analytics_opt_out');
+          } else {
+            localStorage.setItem('ps_analytics_opt_out', '1');
+            localStorage.removeItem('ps_analytics_visitor');
+          }
+          render();
+        } catch (_) {
+          status.textContent = 'Could not save this preference in browser storage.';
+        }
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>

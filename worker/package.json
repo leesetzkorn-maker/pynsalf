@@ -1,0 +1,22 @@
+{
+  "name": "pynsalf-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private PS PynSalf analytics dashboard and event collector (Cloudflare Worker + D1)",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "schema:local": "wrangler d1 execute pynsalf-analytics --local --file=./schema.sql",
+    "schema:remote": "wrangler d1 execute pynsalf-analytics --remote --file=./schema.sql",
+    "hash": "node scripts/hash-password.js",
+    "test": "node scripts/unit.js",
+    "smoke": "node scripts/smoke.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
