@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" width="640" height="800" role="img" aria-label="Placeholder for the ointment product photo">
+  <rect width="640" height="800" fill="#f3ece1"/>
+
+  <!-- soft backdrop -->
+  <ellipse cx="320" cy="612" rx="188" ry="26" fill="#e6dacb"/>
+  <rect x="176" y="150" width="288" height="440" rx="26" fill="#ffffff" stroke="#e6dacb" stroke-width="4"/>
+
+  <!-- jar silhouette -->
+  <rect x="234" y="300" width="172" height="230" rx="18" fill="#1f4d3d"/>
+  <rect x="222" y="268" width="196" height="46" rx="12" fill="#c8873c"/>
+  <rect x="256" y="352" width="128" height="8" rx="4" fill="#e6dacb" opacity=".55"/>
+  <rect x="256" y="374" width="92" height="8" rx="4" fill="#e6dacb" opacity=".4"/>
+  <rect x="256" y="396" width="110" height="8" rx="4" fill="#e6dacb" opacity=".4"/>
+
+  <!-- replace marker -->
+  <g fill="#8a8175" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">
+    <text x="320" y="104" font-size="30" letter-spacing="4" fill="#b4652a">[PRODUCT IMAGE]</text>
+    <text x="320" y="700" font-size="22">Replace this file with your product photo</text>
+    <text x="320" y="732" font-size="20">assets/product-placeholder.svg</text>
+  </g>
+</svg>
