@@ -1,76 +1,59 @@
-# Content Checklist
+# Natural Pain Care — content notes
 
-Everything below is marked in `index.html` with an orange dashed outline.
-Search the HTML for `[` to find them all.
+The site is live at https://leesetzkorn-maker.github.io/pynsalf/
+Every push to `main` republishes automatically via GitHub Actions.
 
-## Brand
+## Still needed from the product owner
 
-| Placeholder | Where |
-|---|---|
-| `[PRODUCT NAME]` | Header logo, hero eyebrow, footer, page title, OG title |
-| `[PRODUCT IMAGE]` | Hero image — replace `assets/product-placeholder.svg` |
+Nothing is blocking the site. These are the details to add when you have them:
 
-## Product information
+| What | Where it goes | Current wording |
+|---|---|---|
+| Real product / business name | logo, title, hero, footer | "Natural Pain Care" |
+| Product photo | `assets/product-placeholder.svg` | placeholder jar graphic |
+| Ingredients | About the Ointment | "Full product information coming soon." |
+| Price | About the Ointment | "Full product information coming soon." |
+| Directions from the label | How To Use | "Directions will be added from the product label." |
+| Business / trading hours | Contact section | not shown |
 
-| Placeholder | Where |
-|---|---|
-| `[ADD PRODUCT DESCRIPTION HERE]` | About Our Ointment |
-| `[INGREDIENTS]` | Product details table |
-| `[PRICE]` | Product details table |
-| `[WARNINGS]` | Product details table |
-| `[ADD CORRECT DIRECTIONS FOR USE]` | How To Use, step 1 |
+## How to replace the product photo
 
-## Business information
+Save your photo into `assets/` and update this one line in `index.html`:
 
-| Placeholder | Where |
-|---|---|
-| `[ADD FATHER/BUSINESS STORY HERE]` | Made With Care |
-| `[ADD BUSINESS HOURS]` | Contact section |
+```html
+<img src="assets/product-placeholder.svg" ...>
+```
 
-## How to replace the photo
+It is cropped to a 4:5 portrait ratio automatically. A vertical photo works best.
 
-1. Save your photo into `assets/` (e.g. `assets/product.jpg`).
-   Keep it under about 300 KB. WebP is best.
-2. In `index.html`, change this line:
+## Customer photos
 
-   ```html
-   <img src="assets/product-placeholder.svg" ... >
-   ```
+Originals stay on your computer and are excluded from the live site by `.gitignore`:
 
-   to:
+- `before.jpg` / `after.jpg` → published as `assets/before-1.webp`, `assets/after-1.webp`
+- `before 2.jpg` / `after 2.jpg` → published as `assets/before-2.webp`, `assets/after-2.webp`
+- `review.jpg` → published as `assets/review.webp`
 
-   ```html
-   <img src="assets/product.jpg" ... >
-   ```
+The WebP copies are 84–95% smaller and the originals are never modified. To re-export
+after a change, resize to 760px wide (860px for the review) and save as WebP.
 
-The photo is cropped to a 4:5 portrait ratio automatically, so a vertical
-photo works best.
+## Wording
 
-## Health-claims notice
+The copy stays deliberately careful: "soothing", "topical care", "designed for",
+"everyday aches and discomfort". No cure claims, no certifications, no invented
+testimonials or ratings. The customer's review appears as their own screenshot,
+unedited. Add stronger wording only when you can support it.
 
-The wording on the site is deliberately cautious: "soothing", "topical care",
-"designed for", "may help provide temporary relief". No cure claims, no
-medical certifications, and no testimonials have been added, because none
-were supplied.
+## Run locally
 
-If you add stronger wording later, only use claims you can actually support.
-
-## Testimonials
-
-There is no testimonials section yet, on purpose. No real reviews were
-supplied, so none were invented. When you have genuine customer reviews,
-add a `<section id="testimonials">` block and link it in the nav.
-
-## Run it
-
-No build step and no dependencies. Open `index.html` directly, or serve it:
+No build step and no dependencies. Open `index.html`, or:
 
 ```bash
 npx serve .
 ```
 
-## Contact details used
+## Contact details
 
-- WhatsApp: https://wa.me/27723973400 (displayed as 072 397 3400)
+- WhatsApp: https://wa.me/27723973400 (shown as 072 397 3400)
 - Phone: tel:+27723973400
 - Email: Gustavsetzkorn99@fmail.com

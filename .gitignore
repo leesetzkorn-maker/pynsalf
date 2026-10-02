@@ -4,3 +4,13 @@ node_modules/
 .vercel/
 .netlify/
 *.log
+
+# Original customer photos are kept locally as the source of truth.
+# The website uses the optimised WebP copies in assets/ instead.
+/before.jpg
+/after.jpg
+/before 2.jpg
+/after 2.jpg
+/review.jpg
+# OCR language data (local tooling only)
+eng.traineddata

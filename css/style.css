@@ -123,6 +123,8 @@ a { color: var(--green-700); }
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 44px;              /* comfortable tap target on phones */
+  padding: 4px 0;
   text-decoration: none;
   color: var(--green-900);
   min-width: 0;
@@ -267,29 +269,6 @@ a { color: var(--green-700); }
   color: var(--ink-soft);
 }
 
-/* ------------------------------- placeholders ------------------------------ */
-/* Visually marked so you can spot and replace every one of them. */
-
-.ph,
-.ph-block,
-.ph-inline {
-  font-family: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
-  color: var(--clay-600);
-  background: #fdf3e6;
-  border: 1px dashed var(--clay-500);
-  border-radius: 6px;
-  padding: 1px 7px;
-  font-size: .92em;
-}
-
-.ph-block {
-  display: block;
-  padding: 12px 16px;
-  font-size: .95rem;
-}
-.ph-inline { padding: 0 6px; }
-.ph { padding: 2px 8px; }
-
 /* ----------------------------------- hero ---------------------------------- */
 
 .hero {
@@ -337,30 +316,6 @@ a { color: var(--green-700); }
   border-radius: 50%;
   background: var(--clay-500);
   flex: none;
-}
-
-.hero-media {
-  position: relative;
-  background: var(--white);
-  border: 1px solid var(--sand-200);
-  border-radius: var(--radius);
-  padding: 14px;
-  box-shadow: var(--shadow-sm);
-}
-.hero-media img {
-  width: 100%;
-  aspect-ratio: 4 / 5;          /* predictable crop on any photo */
-  object-fit: cover;
-  border-radius: calc(var(--radius) - 6px);
-  background: var(--sand-100);
-}
-.media-note {
-  margin: 12px 0 0;
-  text-align: center;
-  font-size: .78rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
 }
 
 /* ------------------------------ detail list -------------------------------- */
@@ -586,12 +541,6 @@ a { color: var(--green-700); }
   color: #8fa79a;
 }
 .footer-bottom p { margin: 0; }
-.footer-bottom .ph-inline {
-  color: #e8d3b4;
-  background: rgba(255, 255, 255, .08);
-  border-color: rgba(255, 255, 255, .25);
-  font-size: .95em;
-}
 
 /* --------------------------- floating WhatsApp ----------------------------- */
 
@@ -662,6 +611,8 @@ body { padding-bottom: 24px; }
 @media (min-width: 860px) {
   .nav-toggle { display: none; }
 
+  .ba-grid { gap: 24px; }
+
   .primary-nav {
     position: static;
     display: flex;
@@ -707,4 +658,107 @@ body { padding-bottom: 24px; }
 @media print {
   .site-header, .wa-fab, .nav-toggle, .primary-nav { display: none !important; }
   body { background: #fff; }
+}
+/* --------------------------- product photo framing ------------------------ */
+
+.hero-media {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #fbf6ee 100%);
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;          /* one predictable crop for any future photo */
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--sand-100);
+}
+
+/* ------------------------------ coming soon -------------------------------- */
+
+.coming-soon {
+  display: inline-block;
+  margin: 22px 0 0;
+  padding: 9px 16px;
+  background: var(--green-100);
+  border: 1px solid #cfe0d6;
+  border-radius: 999px;
+  color: var(--green-800);
+  font-size: .93rem;
+  font-weight: 600;
+}
+
+/* ------------------- customer reviews, before & after --------------------- */
+
+.subhead {
+  margin: 44px 0 18px;
+  font-size: 1.1rem;
+  color: var(--green-800);
+}
+.subhead:first-of-type { margin-top: 34px; }
+
+/* stacked on mobile, side by side from tablet up */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.ba-item { margin: 0; }
+
+.ba-frame {
+  position: relative;
+  background: var(--sand-100);
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.ba-frame img {
+  width: 100%;
+  aspect-ratio: 3 / 4;          /* crops tall phone screenshots cleanly */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.ba-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(20, 55, 44, .28);
+}
+.ba-tag-before { background: #6b7280; }
+.ba-tag-after  { background: var(--green-700); }
+
+.review-wrap {
+  max-width: 420px;
+  margin: 0 auto;
+  background: var(--sand-100);
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius);
+  padding: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.review-wrap img {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 6px);
+  display: block;
+}
+
+/* ------------------------------ media queries ------------------------------ */
+
+@media (min-width: 600px) {
+  .ba-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .review-wrap { max-width: 460px; }
 }
