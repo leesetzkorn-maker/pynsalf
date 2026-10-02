@@ -1,108 +1,198 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" width="640" height="800" role="img" aria-label="PS PynSalf pain relief ointment jar">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" width="640" height="800" role="img" aria-label="PS PynSalf natural topical ointment jar, labelled PS, PynSalf and Natural Ingredients">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#fdfaf4"/>
-      <stop offset="100%" stop-color="#efe4d3"/>
+    <!-- studio backdrop -->
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="58%" stop-color="#f6efe3"/>
+      <stop offset="100%" stop-color="#e9dcc8"/>
     </linearGradient>
-    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#16392d"/>
-      <stop offset="28%" stop-color="#26604a"/>
-      <stop offset="70%" stop-color="#2c6a53"/>
-      <stop offset="100%" stop-color="#122f25"/>
+    <linearGradient id="table" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e2d3bd"/>
+      <stop offset="100%" stop-color="#cdb99d"/>
     </linearGradient>
-    <linearGradient id="lid" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#8f4d20"/>
-      <stop offset="30%" stop-color="#c8873c"/>
-      <stop offset="72%" stop-color="#b4652a"/>
-      <stop offset="100%" stop-color="#7d431b"/>
-    </linearGradient>
-    <linearGradient id="label" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#fffdf8"/>
-      <stop offset="100%" stop-color="#f6efe2"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity=".22"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity=".05"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity=".14"/>
-    </linearGradient>
-    <radialGradient id="psBadge" cx="0.35" cy="0.3" r="0.8">
-      <stop offset="0%" stop-color="#2c6a53"/>
-      <stop offset="100%" stop-color="#16392d"/>
+    <radialGradient id="pool" cx="0.5" cy="0.42" r="0.62">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".92"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity=".35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
-    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="16"/>
+
+    <!-- jar body: cylinder shading, dark edges + rim light -->
+    <linearGradient id="bodyShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0b241b"/>
+      <stop offset="7%" stop-color="#17392c"/>
+      <stop offset="22%" stop-color="#2a6350"/>
+      <stop offset="38%" stop-color="#357a60"/>
+      <stop offset="52%" stop-color="#2b6852"/>
+      <stop offset="74%" stop-color="#1c4636"/>
+      <stop offset="90%" stop-color="#122f24"/>
+      <stop offset="100%" stop-color="#3d7f66"/>
+    </linearGradient>
+
+    <!-- lid: warm clay plastic -->
+    <linearGradient id="lidShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6d3a16"/>
+      <stop offset="10%" stop-color="#9c5a25"/>
+      <stop offset="30%" stop-color="#cd8f45"/>
+      <stop offset="46%" stop-color="#d89a4e"/>
+      <stop offset="68%" stop-color="#b0682c"/>
+      <stop offset="88%" stop-color="#7f4419"/>
+      <stop offset="100%" stop-color="#a15c26"/>
+    </linearGradient>
+    <linearGradient id="lidTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0a862"/>
+      <stop offset="100%" stop-color="#b8722f"/>
+    </linearGradient>
+
+    <!-- printed label -->
+    <linearGradient id="labelBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fffdf8"/>
+      <stop offset="55%" stop-color="#f8f2e6"/>
+      <stop offset="100%" stop-color="#efe6d5"/>
+    </linearGradient>
+    <!-- label wrapped around the cylinder -->
+    <linearGradient id="labelWrap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#000000" stop-opacity=".20"/>
+      <stop offset="16%" stop-color="#000000" stop-opacity=".05"/>
+      <stop offset="42%" stop-color="#ffffff" stop-opacity=".22"/>
+      <stop offset="66%" stop-color="#000000" stop-opacity=".04"/>
+      <stop offset="90%" stop-color="#000000" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity=".30"/>
+    </linearGradient>
+    <linearGradient id="bodyGloss" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".26"/>
+      <stop offset="26%" stop-color="#ffffff" stop-opacity=".10"/>
+      <stop offset="46%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity=".18"/>
+    </linearGradient>
+    <linearGradient id="occlusion" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity=".34"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="psBadgeFill" cx="0.34" cy="0.28" r="0.85">
+      <stop offset="0%" stop-color="#35795f"/>
+      <stop offset="60%" stop-color="#1f5641"/>
+      <stop offset="100%" stop-color="#123328"/>
+    </radialGradient>
+
+    <filter id="blurSm" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="blurMd" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="blurLg" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="30"/>
     </filter>
   </defs>
 
-  <!-- background -->
-  <rect width="640" height="800" fill="url(#bg)"/>
-  <ellipse cx="320" cy="672" rx="184" ry="26" fill="#d9cbb6" opacity=".65" filter="url(#soft)"/>
+  <!-- ================= BACKDROP ================= -->
+  <rect width="640" height="800" fill="url(#wall)"/>
+  <rect width="640" height="800" fill="url(#pool)"/>
+  <rect y="648" width="640" height="152" fill="url(#table)"/>
+  <rect y="644" width="640" height="10" fill="#000000" opacity=".05" filter="url(#blurMd)"/>
+  <!-- soft reflection of the jar on the surface -->
+  <ellipse cx="320" cy="672" rx="150" ry="34" fill="#7d6a52" opacity=".20" filter="url(#blurLg)"/>
+  <!-- contact shadow -->
+  <ellipse cx="322" cy="654" rx="168" ry="22" fill="#4a3a28" opacity=".42" filter="url(#blurMd)"/>
+  <ellipse cx="320" cy="650" rx="112" ry="12" fill="#3a2c1d" opacity=".45" filter="url(#blurSm)"/>
 
-  <!-- ================= LID ================= -->
-  <rect x="206" y="196" width="228" height="34" rx="10" fill="#7d431b" opacity=".35"/>
-  <rect x="210" y="186" width="220" height="40" rx="12" fill="url(#lid)"/>
-  <rect x="210" y="222" width="220" height="12" rx="6" fill="#6f3a15" opacity=".38"/>
-  <!-- knurled ridges -->
-  <g fill="#ffffff" opacity=".16">
-    <rect x="228" y="192" width="7" height="30" rx="3.5"/>
-    <rect x="252" y="192" width="7" height="30" rx="3.5"/>
-    <rect x="276" y="192" width="7" height="30" rx="3.5"/>
-    <rect x="300" y="192" width="7" height="30" rx="3.5"/>
-    <rect x="324" y="192" width="7" height="30" rx="3.5"/>
-    <rect x="348" y="192" width="7" height="30" rx="3.5"/>
-    <rect x="372" y="192" width="7" height="30" rx="3.5"/>
-    <rect x="396" y="192" width="7" height="30" rx="3.5"/>
-  </g>
+  <!-- ================= JAR ================= -->
+  <g>
+    <!-- body -->
+    <path d="M212 244 q0 -14 14 -14 h188 q14 0 14 14 v368 q0 30 -30 30 h-156 q-30 0 -30 -30 Z"
+          fill="url(#bodyShade)"/>
+    <!-- shoulder shading under the lid -->
+    <rect x="212" y="230" width="228" height="46" fill="url(#occlusion)"/>
+    <!-- cylindrical gloss -->
+    <path d="M212 244 q0 -14 14 -14 h188 q14 0 14 14 v368 q0 30 -30 30 h-156 q-30 0 -30 -30 Z"
+          fill="url(#bodyGloss)"/>
+    <!-- tall specular strip -->
+    <rect x="243" y="252" width="17" height="360" rx="9" fill="#ffffff" opacity=".17" filter="url(#blurSm)"/>
+    <rect x="262" y="262" width="5" height="340" rx="3" fill="#ffffff" opacity=".22" filter="url(#blurSm)"/>
+    <!-- right rim light -->
+    <rect x="424" y="258" width="7" height="350" rx="4" fill="#a8e0c4" opacity=".20" filter="url(#blurSm)"/>
 
-  <!-- ================= JAR BODY ================= -->
-  <rect x="224" y="228" width="192" height="404" rx="26" fill="url(#body)"/>
-  <rect x="224" y="228" width="192" height="404" rx="26" fill="url(#glass)"/>
-  <!-- shoulder highlight -->
-  <rect x="240" y="240" width="26" height="380" rx="13" fill="#ffffff" opacity=".10"/>
+    <!-- label -->
+    <rect x="224" y="266" width="192" height="352" rx="8" fill="url(#labelBase)"/>
+    <rect x="224" y="266" width="192" height="352" rx="8" fill="url(#labelWrap)"/>
+    <rect x="224.75" y="266.75" width="190.5" height="350.5" rx="7.5" fill="none"
+          stroke="#c8873c" stroke-width="1.5" opacity=".55"/>
+    <rect x="232" y="274" width="176" height="336" rx="5" fill="none"
+          stroke="#1f4d3d" stroke-width="1" opacity=".28"/>
 
-  <!-- ================= LABEL ================= -->
-  <rect x="244" y="268" width="152" height="316" rx="14" fill="url(#label)"/>
-  <rect x="244" y="268" width="152" height="316" rx="14" fill="none" stroke="#c8873c" stroke-width="2.5" opacity=".5"/>
+    <!-- PS roundel -->
+    <circle cx="320" cy="336" r="42" fill="url(#psBadgeFill)"/>
+    <circle cx="320" cy="336" r="42" fill="none" stroke="#c8873c" stroke-width="2" opacity=".85"/>
+    <circle cx="320" cy="336" r="36" fill="none" stroke="#ffffff" stroke-width="1" opacity=".22"/>
+    <text x="320" y="337" text-anchor="middle" dominant-baseline="central"
+          font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="700"
+          letter-spacing="1" fill="#fdfaf4">PS</text>
 
-  <!-- PS badge -->
-  <circle cx="320" cy="330" r="42" fill="url(#psBadge)"/>
-  <text x="320" y="330" text-anchor="middle" dominant-baseline="central"
-        font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700"
-        letter-spacing="1" fill="#fdfaf4">PS</text>
+    <!-- wordmark -->
+    <text x="320" y="428" text-anchor="middle"
+          font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="700"
+          letter-spacing="0.5" fill="#14372c">PYNSALF</text>
+    <rect x="272" y="444" width="96" height="2.5" rx="1.25" fill="#c8873c"/>
 
-  <!-- leaf accent inside badge bottom -->
-  <path d="M320 372c7 5 10 10 10 15a10 10 0 0 1-20 0c0-5 3-10 10-15Z" fill="#c8873c"/>
+    <!-- natural ingredients -->
+    <text x="320" y="480" text-anchor="middle"
+          font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26"
+          letter-spacing="0" fill="#2f5a47">Natural</text>
+    <text x="320" y="510" text-anchor="middle"
+          font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="26"
+          letter-spacing="0" fill="#2f5a47">Ingredients</text>
 
-  <!-- wordmark -->
-  <text x="320" y="424" text-anchor="middle"
-        font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700"
-        letter-spacing="1.5" fill="#16392d">PYNSALF</text>
+    <rect x="266" y="530" width="108" height="1" fill="#bfb096"/>
 
-  <!-- rule -->
-  <rect x="278" y="440" width="84" height="2" rx="1" fill="#c8873c"/>
+    <text x="320" y="560" text-anchor="middle"
+          font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="18"
+          font-weight="700" letter-spacing="0.5" fill="#6b6257">TOPICAL BODY CARE</text>
 
-  <!-- natural ingredients -->
-  <text x="320" y="466" text-anchor="middle"
-        font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="15"
-        letter-spacing="0.6" fill="#3f6b56">Natural Ingredients</text>
+    <!-- leaf sprig -->
+    <g opacity=".85">
+      <path d="M320 608 v-26" stroke="#2b6852" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M320 590 c 11 -2 15 -9 15 -16 c -9 0 -15 5 -15 16 Z" fill="#2b6852"/>
+      <path d="M320 600 c -11 -2 -15 -9 -15 -16 c 9 0 15 5 15 16 Z" fill="#3d7f66"/>
+    </g>
 
-  <!-- divider -->
-  <rect x="272" y="486" width="96" height="1" fill="#ddd0ba"/>
-
-  <!-- topical body care -->
-  <text x="320" y="510" text-anchor="middle"
-        font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12"
-        font-weight="700" letter-spacing="2.4" fill="#8a8175">TOPICAL</text>
-  <text x="320" y="528" text-anchor="middle"
-        font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12"
-        font-weight="700" letter-spacing="2.4" fill="#8a8175">BODY CARE</text>
-
-  <!-- jar base -->
-  <rect x="238" y="616" width="164" height="18" rx="9" fill="#0d251c" opacity=".28"/>
-
-  <!-- ================= SIDE CALLOUT ================= -->
-  <g font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">
-    <text x="320" y="112" font-size="26" font-weight="700" letter-spacing="3.5" fill="#16392d">PS PYNSALF</text>
-    <text x="320" y="146" font-size="15" letter-spacing="1.6" fill="#8a8175">EVERYDAY BODY CARE</text>
+    <!-- ================= LID ================= -->
+    <!-- skirt / rim -->
+    <rect x="204" y="216" width="232" height="22" rx="7" fill="#6f3a15"/>
+    <rect x="204" y="216" width="232" height="22" rx="7" fill="url(#bodyGloss)"/>
+    <!-- main cap -->
+    <rect x="196" y="168" width="248" height="52" rx="12" fill="url(#lidShade)"/>
+    <!-- cap top face -->
+    <rect x="206" y="168" width="228" height="15" rx="7" fill="url(#lidTop)"/>
+    <!-- knurled grip -->
+    <g fill="#ffffff" opacity=".17">
+      <rect x="214" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="234" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="254" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="274" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="294" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="314" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="334" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="354" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="374" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="394" y="188" width="7" height="26" rx="3.5"/>
+      <rect x="414" y="188" width="7" height="26" rx="3.5"/>
+    </g>
+    <g fill="#000000" opacity=".16">
+      <rect x="224" y="188" width="4" height="26" rx="2"/>
+      <rect x="244" y="188" width="4" height="26" rx="2"/>
+      <rect x="264" y="188" width="4" height="26" rx="2"/>
+      <rect x="284" y="188" width="4" height="26" rx="2"/>
+      <rect x="304" y="188" width="4" height="26" rx="2"/>
+      <rect x="324" y="188" width="4" height="26" rx="2"/>
+      <rect x="344" y="188" width="4" height="26" rx="2"/>
+      <rect x="364" y="188" width="4" height="26" rx="2"/>
+      <rect x="384" y="188" width="4" height="26" rx="2"/>
+      <rect x="404" y="188" width="4" height="26" rx="2"/>
+    </g>
+    <!-- lid highlight + top edge -->
+    <rect x="252" y="172" width="120" height="6" rx="3" fill="#ffffff" opacity=".28"/>
+    <rect x="196" y="214" width="248" height="6" rx="3" fill="#000000" opacity=".22"/>
+    <!-- shadow the lid casts on the body -->
+    <rect x="212" y="238" width="228" height="14" fill="#000000" opacity=".20" filter="url(#blurSm)"/>
   </g>
 </svg>

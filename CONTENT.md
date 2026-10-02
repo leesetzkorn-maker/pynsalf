@@ -5,7 +5,7 @@ Every push to `main` republishes automatically via GitHub Actions.
 
 ## Brand
 
-- Business / product name: **PS PynSalf** ("PS" = PynSalf)
+- Business / product name: **PS PynSalf** ("PS" = PynSalf, stated explicitly on the page)
 - Logo mark: `assets/logo-mark.svg` (also used as the favicon artwork, see `assets/favicon.svg`)
 - Jar artwork: `assets/product-pynsalf.svg` — labelled PS / PYNSALF / Natural Ingredients
 
@@ -41,7 +41,10 @@ Save your photo into `assets/` and update this one line in `index.html`:
 <img src="assets/product-pynsalf.svg" ...>
 ```
 
-It is cropped to a 4:5 portrait ratio automatically. A vertical photo works best.
+The hero frame **does not crop**. It is capped at 480px wide (540px on desktop) and
+keeps whatever proportions the image has, so a vertical photo works best but any
+orientation will display in full. Drop in a real photo and remove the
+`width`/`height` attributes if the photo is not 640x800.
 
 ## Customer photos
 
@@ -51,8 +54,16 @@ Originals stay on your computer and are excluded from the live site by `.gitigno
 - `before 2.jpg` / `after 2.jpg` → published as `assets/before-2.webp`, `assets/after-2.webp`
 - `review.jpg` → published as `assets/review.webp`
 
-The WebP copies are 84–95% smaller and the originals are never modified. To re-export
-after a change, resize to 760px wide (860px for the review) and save as WebP.
+Each photo is also published at a second, smaller size so phones do not download the
+large file (for example `assets/before-1-380w.webp` alongside `assets/before-1.webp`).
+The markup uses `srcset`, so the browser picks the right one automatically.
+
+**The customer photos are never cropped, filtered or resized with a forced aspect
+ratio.** Please keep it that way — they are real people sharing real results. The
+Before/After frames deliberately use plain `width: 100%; height: auto`.
+
+To re-export after a change, resize to 760px wide (860px for the review) and save as
+WebP, then regenerate the smaller variants.
 
 ## Wording
 
@@ -68,6 +79,17 @@ No build step and no dependencies. Open `index.html`, or:
 ```bash
 npx serve .
 ```
+
+## Testing
+
+There is no test runner in the repo, to keep it dependency-free. Before publishing,
+check the site at 360px, 390px, 768px and 1280px wide:
+
+- no sideways scrolling
+- the four customer photos and the review screenshot show in full, uncropped
+- the menu opens and closes on a phone
+- the WhatsApp, phone and email buttons all work
+- the floating WhatsApp button does not sit on top of any text
 
 ## Contact details
 
