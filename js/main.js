@@ -32,7 +32,7 @@
   });
 
   // Reset state if the viewport grows into the desktop layout.
-  var desktop = window.matchMedia('(min-width: 860px)');
+  var desktop = window.matchMedia('(min-width: 1100px)');
   function onChange(e) { if (e.matches) setOpen(false); }
   if (typeof desktop.addEventListener === 'function') {
     desktop.addEventListener('change', onChange);

@@ -18,7 +18,8 @@ rules would need to be managed on the GitHub Pages domain root or a custom domai
 
 - Business / product name: **PS PynSalf** ("PS" = PynSalf, stated explicitly on the page)
 - Logo mark: `assets/logo-mark.svg` (also used as the favicon artwork, see `assets/favicon.svg`)
-- Jar artwork: `assets/product-pynsalf.svg` — labelled PS / PYNSALF / Natural Ingredients / 350 ml
+- Product jar photo: `1000254640.png` — PS Skin & Beauty Cream, 350 ml
+- Hero artwork: `assets/hero*.webp` — responsive, full-bleed crops from the supplied homepage reference
 - Container: **350ml jar with a lid**, handmade in small batches, no squeeze tubes
 - Trading since **August 2018** — a one-man show, every jar filled by hand
 - Contact email: `gustavsetzkorn99@gmail.com`
@@ -29,7 +30,7 @@ Nothing is blocking the site. These are the details to add when you have them:
 
 | What | Where it goes | Current wording |
 |---|---|---|
-| Real product photo | hero | `assets/product-pynsalf.svg` jar artwork |
+| Product photo | hero artwork | Included in the supplied `heropage.png` design |
 | Ingredients | About the Ointment | "Full ingredient and product information coming soon." |
 | Price | About the Ointment | "Full product information coming soon." |
 | Directions from the label | How To Use | "Directions will be added from the product label." |
@@ -57,16 +58,15 @@ standard brand blue only reaches 4.23:1 at this button's font size.
 
 ## How to replace the product photo
 
-Save your photo into `assets/` and update this one line in `index.html`:
+The hero is currently the supplied, responsive design artwork. To replace it,
+export matching desktop and phone crops in WebP format, then update the
+`<picture>` sources and `srcset` in `index.html`. Keep an accessible heading,
+description and keyboard-reachable order link in `.hero-a11y`.
 
-```html
-<img src="assets/product-pynsalf.svg" ...>
-```
-
-The hero frame **does not crop**. It is capped at 480px wide (540px on desktop) and
-keeps whatever proportions the image has, so a vertical photo works best but any
-orientation will display in full. Drop in a real photo and remove the
-`width`/`height` attributes if the photo is not 640x800.
+The current art exports are pixel-matched crops of the supplied reference:
+1536×611 for desktop and 930×607 for phones. Their intrinsic proportions are
+preserved by the responsive `<picture>`; replace all matching `srcset` variants
+together so each screen size continues to load the right image.
 
 ## Customer photos
 
@@ -94,10 +94,9 @@ The copy stays deliberately careful: "soothing", "topical care", "designed for",
 testimonials or ratings. The customer's review appears as their own screenshot,
 unedited. Add stronger wording only when you can support it.
 
-The hero `<h1>` is now **PS PynSalf Natural Topical & Body Care**, which targets
-search rather than the old "Natural Care for Everyday Aches & Discomfort". That
-phrase still appears lower down in the About and Benefits sections, so the older
-"aches and discomfort" wording has not been dropped from the page.
+The hero introduces **PS Skin & Beauty Cream**, with PS PynSalf retained as the
+business name. The separate topical body-care and medical-safety information
+remains in the About and product-information sections.
 
 The "Everyday Skin & Body Care, Written Plainly" section deliberately answers
 search-shaped questions (dry skin, skin texture, ageing skin, appearance of fine
@@ -152,8 +151,8 @@ npx serve .
 
 ## Testing
 
-There is no test runner in the repo, to keep it dependency-free. Before publishing,
-check the site at 360px, 390px, 768px and 1280px wide:
+There is no test runner in the repo, to keep it dependency-free. Before publishing, check the site at 360px, 390px, 430px, 768px, 1024px, 1440px
+and 1920px wide:
 
 - no sideways scrolling
 - the four customer photos and the review screenshot show in full, uncropped

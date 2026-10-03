@@ -287,126 +287,77 @@ a { color: var(--green-700); }
 
 /* ----------------------------------- hero ---------------------------------- */
 
+/* The hero is the supplied PS Skin & Beauty design shown edge to edge, straight
+   underneath the navigation bar. assets/hero*.webp are pixel-exact crops of
+   heropage.png's hero band, so the artwork is never redrawn or restyled. */
 .hero {
   position: relative;
-  overflow: hidden;
-  padding: 44px 0 52px;
-  background:
-    radial-gradient(760px 500px at 92% 4%, rgba(200, 162, 74, .22) 0%, rgba(200, 162, 74, 0) 68%),
-    linear-gradient(125deg, var(--green-900) 0%, #1a4536 62%, var(--green-800) 100%);
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-  align-items: center;
-}
-
-.lead {
-  font-size: clamp(1.02rem, 2.6vw, 1.16rem);
-  color: var(--ink-soft);
-  max-width: 55ch;
-}
-
-.hero .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  margin-bottom: 12px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: #c8a24a;
-  color: #1c2b23;
-  letter-spacing: .08em;
-}
-
-.hero .eyebrow::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: var(--green-800);
-}
-
-.hero h1 {
-  max-width: 18ch;
-  margin-bottom: 14px;
-  color: var(--white);
-  font-size: clamp(2rem, 5vw, 3.45rem);
-}
-
-.hero .lead {
-  color: rgba(255, 255, 255, .88);
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 24px 0 0;
-}
-
-.hero-actions .btn-whatsapp {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
-}
-
-.hero-actions .btn-outline {
-  background: transparent;
-  color: var(--white);
-  border-color: #d4af37;
-}
-
-.hero-actions .btn-outline:hover {
-  background: rgba(255, 255, 255, .1);
-}
-
-.hero-community {
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
-  align-items: start;
-  gap: 12px;
-  max-width: 620px;
-  margin-top: 26px;
-  padding: 17px;
-  border: 1px solid rgba(255, 255, 255, .18);
-  border-left: 3px solid #d4af37;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, .07);
-}
-
-.hero-community-icon {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #166fe5;
-  color: var(--white);
-  text-decoration: none;
-}
-
-.hero-community-icon .ico { width: 22px; height: 22px; }
-.hero-community-icon:hover { background: #1259c4; }
-
-.hero-community-copy p {
+  width: 100%;
   margin: 0;
-  color: rgba(255, 255, 255, .86);
-  font-size: .91rem;
-  line-height: 1.55;
+  padding: 0;
+  overflow: hidden;
+  /* the design's own hero backdrop, so there is never a pale seam while loading */
+  background: #9c9455;
 }
 
-.hero-community-copy .hero-community-intro {
-  margin-bottom: 9px;
-  color: var(--white);
-  font-weight: 600;
+.hero-art {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* phone crop ratio (930x607, served as 620x405) */
+  aspect-ratio: 620 / 405;
+  min-height: 210px;
 }
 
-.hero-community-copy .hero-community-owner {
-  margin-top: 9px;
-  color: #d7e1db;
-  font-size: .84rem;
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* cover on a matching ratio neither crops nor letterboxes, so the
+     supplied design can never be stretched or squashed */
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+@media (min-width: 641px) {
+  .hero-art {
+    /* full hero band of the design (1536x611) */
+    aspect-ratio: 1536 / 611;
+    min-height: 0;
+    /* only bites on ultra-wide displays, and crops symmetrically */
+    max-height: 1200px;
+  }
+}
+
+/* The design bakes its headline, copy and CTA into the artwork, so that copy is
+   kept in the DOM for SEO and assistive tech but taken out of the visual flow. */
+.hero-a11y {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* keep the WhatsApp order link reachable by keyboard, without touching the design */
+.hero-a11y .btn:focus-visible {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 300;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 12px 20px;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
 }
 
 /* ---------------------------------- cards ---------------------------------- */
@@ -755,29 +706,6 @@ a { color: var(--green-700); }
 .site-footer { padding-bottom: calc(24px + 70px); }
 @media (min-width: 900px) { .site-footer { padding-bottom: 24px; } }
 
-/* --------------------------- product photo framing ------------------------ */
-
-.hero-media {
-  position: relative;
-  background: linear-gradient(180deg, #ffffff 0%, #fbf6ee 100%);
-  border: 1px solid rgba(212, 175, 55, .42);
-  border-radius: var(--radius);
-  padding: 12px;
-  box-shadow: 0 18px 54px rgba(0, 0, 0, .24), 0 0 38px rgba(212, 175, 55, .12);
-  /* capped so the jar stays prominent on a tablet instead of filling the width */
-  max-width: 480px;
-  margin-inline: auto;
-}
-/* no forced aspect-ratio or object-fit: the artwork is never cropped, and a
-   real photograph dropped in later simply keeps its own proportions */
-.hero-media img {
-  width: 100%;
-  height: auto;
-  border-radius: calc(var(--radius) - 6px);
-  background: var(--sand-100);
-}
-@media (min-width: 600px) { .hero-media { padding: 18px; } }
-
 .product-facts {
   list-style: none;
   margin: 14px 0 0;
@@ -1018,7 +946,6 @@ a { color: var(--green-700); }
 
 @media (min-width: 480px) {
   /* let the two primary calls to action sit side by side once there is room */
-  .hero-actions .btn,
   .contact-actions .btn { flex: 1 1 auto; }
 }
 
@@ -1064,21 +991,10 @@ a { color: var(--green-700); }
 
 @media (max-width: 479px) {
   /* stacked, full-width buttons are far easier to hit one-handed */
-  .hero-actions,
   .contact-actions,
   .maker-actions { flex-direction: column; align-items: stretch; }
-  .hero-actions .btn,
   .contact-actions .btn,
   .maker-actions .btn { width: 100%; }
-
-  .hero-community {
-    grid-template-columns: 34px minmax(0, 1fr);
-    gap: 10px;
-    margin-top: 22px;
-    padding: 14px;
-  }
-  .hero-community-icon { width: 34px; height: 34px; }
-  .hero-community-copy p { font-size: .86rem; }
 }
 
 @media (min-width: 860px) {
@@ -1099,17 +1015,6 @@ a { color: var(--green-700); }
   .primary-nav li + li { border-top: 0; }
   .primary-nav a:not(.btn) { padding: 12px 0; font-size: .96rem; }
   .nav-cta { margin-top: 0; }
-
-  .hero {
-    min-height: min(760px, calc(100vh - var(--header-h)));
-    padding: 60px 0 72px;
-  }
-  /* the product gets the larger share, so it leads the page */
-  .hero-inner {
-    grid-template-columns: 1fr 1.08fr;
-    gap: 48px;
-  }
-  .hero-media { max-width: 540px; margin-inline: 0; justify-self: end; }
 
   .trust-list { grid-template-columns: repeat(4, 1fr); }
 
@@ -1137,4 +1042,289 @@ a { color: var(--green-700); }
   .site-header, .wa-fab, .nav-toggle, .primary-nav, .trust-strip { display: none !important; }
   body { background: #fff; }
   .ba-arrow { display: none !important; }
+}
+
+/* -------------------------- full-width storefront -------------------------- */
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body { padding-bottom: 0; }
+
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid rgba(20, 55, 44, .08);
+}
+
+.header-inner {
+  width: 100%;
+  max-width: none;
+  min-height: clamp(62px, 5vw, 78px);
+  padding-inline: clamp(16px, 4vw, 72px);
+}
+
+.logo { gap: 9px; }
+.logo-mark { width: 42px; height: 42px; }
+.logo-text strong { font-size: clamp(.94rem, 1.3vw, 1.12rem); }
+.logo-text small { font-size: .65rem; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: none;
+}
+
+.cart-link {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: var(--green-900);
+  text-decoration: none;
+}
+
+.cart-link svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  border: 0;
+  background: transparent;
+}
+
+.nav-toggle-bar { width: 23px; }
+
+.primary-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px clamp(16px, 4vw, 72px) 20px;
+  background: #fff;
+  border-bottom: 1px solid var(--sand-200);
+  box-shadow: var(--shadow-md);
+}
+
+.primary-nav.is-open { display: flex; }
+.primary-nav ul { display: flex; flex-direction: column; }
+.primary-nav li + li { border-top: 1px solid var(--sand-100); }
+.primary-nav a:not(.btn) { padding: 11px 2px; }
+.nav-cta { align-self: flex-start; }
+
+.trust-strip {
+  padding: 18px 0;
+  border: 0;
+  background: #fff;
+}
+
+.trust-strip .container {
+  max-width: 1580px;
+  padding-inline: clamp(16px, 4vw, 70px);
+}
+
+.trust-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 32px);
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.trust-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--green-800);
+}
+
+.trust-icon svg { width: 25px; height: 25px; }
+.trust-copy { display: flex; flex-direction: column; min-width: 0; }
+
+.trust-title {
+  margin: 0;
+  font-size: clamp(.78rem, .92vw, .98rem);
+  line-height: 1.25;
+}
+
+.trust-text {
+  color: var(--ink-soft);
+  font-size: clamp(.7rem, .78vw, .8rem);
+  line-height: 1.35;
+}
+
+#benefits {
+  padding: clamp(28px, 4.5vw, 62px) 0 clamp(34px, 5vw, 68px);
+  border: 0;
+  background:
+    radial-gradient(ellipse at 6% 100%, rgba(139, 159, 99, .12), transparent 35%),
+    linear-gradient(180deg, #f8f7ed 0%, #f3f4e9 100%);
+  text-align: center;
+}
+
+#benefits .container {
+  max-width: 1320px;
+  padding-inline: clamp(18px, 4vw, 64px);
+}
+
+#benefits .eyebrow { margin-bottom: 8px; }
+
+#benefits h2 {
+  margin-bottom: 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
+  font-weight: 600;
+}
+
+#benefits .section-intro {
+  max-width: 58ch;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  font-size: clamp(.9rem, 1.15vw, 1.03rem);
+}
+
+#benefits .cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  margin-top: clamp(20px, 3vw, 34px);
+  text-align: left;
+}
+
+#benefits .card {
+  padding: clamp(17px, 2vw, 24px);
+  border: 1px solid rgba(112, 132, 87, .18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 0 8px 22px rgba(20, 55, 44, .045);
+}
+
+#benefits .card-icon {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 11px;
+  border-radius: 50%;
+  background: #edf1e5;
+  color: var(--green-800);
+}
+
+#benefits .card-icon svg { width: 21px; height: 21px; }
+#benefits .card h3 { font-size: clamp(.96rem, 1.2vw, 1.08rem); }
+#benefits .card p { margin: 0; font-size: .9rem; line-height: 1.5; }
+
+.community-note {
+  margin-top: 22px;
+  padding: 17px 19px;
+  border-left: 3px solid var(--clay-500);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--sand-100);
+}
+
+.community-note a { font-weight: 700; }
+.community-note p { margin: 8px 0 0; font-size: .92rem; }
+
+.wa-fab { z-index: 90; }
+.site-footer { padding-bottom: 24px; }
+
+@media (min-width: 1100px) {
+  .header-inner { gap: clamp(16px, 2vw, 36px); }
+
+  .primary-nav {
+    position: static;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(14px, 1.8vw, 28px);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .primary-nav ul {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(12px, 1.5vw, 24px);
+  }
+
+  .primary-nav li + li { border: 0; }
+  .primary-nav a:not(.btn) { padding: 10px 0; font-size: .9rem; }
+  .nav-cta { margin: 0; padding: 10px 17px; font-size: .87rem; }
+  .header-actions { margin-left: 2px; }
+  .nav-toggle { display: none; }
+}
+
+@media (min-width: 760px) and (max-width: 1099px) {
+  .trust-list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .trust-item { min-height: 48px; }
+}
+
+@media (min-width: 760px) and (max-width: 900px) {
+  .trust-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 759px) {
+  .header-inner { min-height: 62px; }
+  .logo-mark { width: 36px; height: 36px; }
+  .logo-text strong { font-size: .92rem; }
+  .logo-text small { font-size: .6rem; }
+  .header-actions { gap: 4px; }
+  .cart-link { width: 38px; height: 42px; }
+
+  .trust-strip { padding: 13px 0; }
+  .trust-strip .container { padding-inline: 16px; }
+  .trust-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 8px; }
+  .trust-item { gap: 7px; align-items: center; }
+  .trust-icon { width: 30px; height: 32px; }
+  .trust-icon svg { width: 21px; height: 21px; }
+  .trust-title { font-size: clamp(.68rem, 3vw, .78rem); }
+  .trust-text { font-size: clamp(.61rem, 2.6vw, .7rem); }
+
+  #benefits { padding: 25px 0 34px; }
+  #benefits .container { padding-inline: 18px; }
+  #benefits .eyebrow { margin-bottom: 6px; font-size: .67rem; }
+  #benefits h2 { margin-bottom: 7px; font-size: clamp(1.55rem, 7vw, 2rem); }
+  #benefits .section-intro { font-size: .85rem; line-height: 1.45; }
+  #benefits .cards { grid-template-columns: 1fr; gap: 9px; margin-top: 17px; }
+  #benefits .card { display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 11px; padding: 12px; }
+  #benefits .card-icon { grid-row: span 2; margin: 0; }
+  #benefits .card h3 { align-self: end; margin: 0 0 2px; font-size: .92rem; }
+  #benefits .card p { font-size: .78rem; line-height: 1.4; }
+
+  .wa-fab { display: none; }
+}
+
+@media (max-width: 379px) {
+  .header-inner { padding-inline: 12px; }
+  .logo { gap: 6px; }
+  .trust-strip .container { padding-inline: 12px; }
+  .trust-item { gap: 5px; }
+  .trust-icon { width: 26px; }
+  .trust-title { font-size: .65rem; }
+  .trust-text { font-size: .59rem; }
+  #benefits .container { padding-inline: 14px; }
 }
