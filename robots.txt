@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# PS PynSalf - natural topical & body care, South Africa
-# https://leesetzkorn-maker.github.io/pynsalf/
+# PS PynSalf - 350ml topical body-care cream, South Africa
+# https://pynsalf.co.za/
 
-Sitemap: https://leesetzkorn-maker.github.io/pynsalf/sitemap.xml
+Sitemap: https://pynsalf.co.za/sitemap.xml

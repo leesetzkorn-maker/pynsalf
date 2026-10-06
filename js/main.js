@@ -32,7 +32,8 @@
   });
 
   // Reset state if the viewport grows into the desktop layout.
-  var desktop = window.matchMedia('(min-width: 1100px)');
+  // Must stay in step with the CSS breakpoint that shows the static desktop nav.
+  var desktop = window.matchMedia('(min-width: 1024px)');
   function onChange(e) { if (e.matches) setOpen(false); }
   if (typeof desktop.addEventListener === 'function') {
     desktop.addEventListener('change', onChange);

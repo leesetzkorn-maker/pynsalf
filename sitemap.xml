@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://leesetzkorn-maker.github.io/pynsalf/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <loc>https://pynsalf.co.za/</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://leesetzkorn-maker.github.io/pynsalf/assets/og-image.png</image:loc>
-      <image:title>PS PynSalf natural topical body care 350ml jar</image:title>
+      <image:loc>https://pynsalf.co.za/assets/og-image.png</image:loc>
+      <image:title>PS PynSalf 350ml topical body-care cream</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://leesetzkorn-maker.github.io/pynsalf/privacy.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <loc>https://pynsalf.co.za/privacy.html</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
