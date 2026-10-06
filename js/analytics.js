@@ -33,6 +33,12 @@
   ];
 
   function send(eventName) {
+    // Recheck the preference for pages that were open when another tab opted out.
+    try {
+      if (localStorage.getItem('ps_analytics_opt_out') === '1') return;
+    } catch (_) {
+      // Storage may be unavailable; retain the existing anonymous fallback.
+    }
     var payload = JSON.stringify({
       event: eventName,
       visitorId: visitorId,

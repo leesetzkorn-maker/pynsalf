@@ -286,6 +286,9 @@ privacyAnchors.forEach((a) => {
 });
 if (privacyOk) pass('all privacy.html hrefs resolve');
 check(ids.has('main'), 'id="main" exists for the skip link');
+const sectionIds = Array.from(indexVisible.matchAll(/<section\b[^>]*\bid="([^"]+)"/gi), (m) => m[1]);
+check(sectionIds[0] === 'top' && sectionIds[1] === 'reviews',
+  'customer Before & After section is directly below the hero');
 
 // --------------------------------------------------------------------------
 // 7. Images: attributes, alt text, srcset and on-disk paths
@@ -373,6 +376,16 @@ const orderLabels = waAnchors.filter((a) => /order on whatsapp/i.test(a.text)).l
 check(orderLabels >= 5, 'at least 5 WhatsApp CTAs are labelled "Order on WhatsApp" (found ' + orderLabels + ')');
 
 check(indexVisible.includes(TEL), 'tel:+27665703425 link present');
+indexAnchors.concat(privacyAnchors).forEach((anchor) => {
+  if (anchor.href.startsWith('tel:')) {
+    check(anchor.href === TEL, 'telephone link uses the canonical number: ' + anchor.href);
+  }
+  if (anchor.href.startsWith('https://wa.me/')) {
+    const url = new URL(anchor.href.replace(/&amp;/g, '&'));
+    check(url.pathname === '/' + WA_NUMBER, 'WhatsApp link uses the canonical number');
+    check(!!url.searchParams.get('text'), 'WhatsApp link preserves a pre-filled message');
+  }
+});
 check(indexVisible.includes('066 570 3425'), 'display number 066 570 3425 present');
 check(!/072[ -]?397[ -]?3400|27723973400/.test(indexVisible),
   'no old contact number remains in index.html');
