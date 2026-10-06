@@ -1,28 +1,59 @@
 # PS PynSalf — content notes
 
-The site is live at https://leesetzkorn-maker.github.io/pynsalf/
+The site is live at https://pynsalf.co.za/
 Every push to `main` republishes automatically via GitHub Actions.
+
+`CNAME` pins the custom domain (`pynsalf.co.za`) for GitHub Pages; the workflow
+stages it into the published artifact, so the domain survives every deploy.
 
 ## Search indexing
 
-`sitemap.xml` lists the canonical homepage and its Open Graph image and is copied
-into the Pages artifact by `.github/workflows/deploy.yml`. Update it when
-additional public pages are added.
-The repository's `robots.txt` allows crawling and names the sitemap. It is
-published at `/pynsalf/robots.txt`. Because this is a GitHub Pages project site,
-that file cannot control host-root robots rules; Google's host-root
-`robots.txt` currently returns 404, which does not block crawling. Host-level
-rules would need to be managed on the GitHub Pages domain root or a custom domain.
+`sitemap.xml` lists the canonical homepage, its Open Graph image and the privacy
+page, and is copied into the Pages artifact by `.github/workflows/deploy.yml`.
+Update it when additional public pages are added. All URLs must use
+`https://pynsalf.co.za/` — never the old `github.io` project address.
+
+`robots.txt` allows crawling and names the sitemap at the live domain. With a
+custom domain, that file is served from the domain root, so it does control
+host-root crawling rules.
+
+## QA gate
+
+`scripts/check-site.js` is a dependency-free Node script that fails the deploy
+if anything drifts. The workflow runs it on every push, before staging:
+
+```bash
+node scripts/check-site.js
+```
+
+It checks: required files; title/description/Open Graph consistency; canonical
+URLs; robots/sitemap/CNAME agreement; internal anchors and on-disk asset paths;
+image `alt`/`srcset`/`width`/`height` attributes; the single-`h1` rule; the
+exact WhatsApp URL (number + prefill message + `noopener noreferrer`);
+`tel:`/`mailto:`/Facebook hrefs matching `js/analytics.js` selectors; banned
+phrases and affirmative medical-claim verbs outside negations; the pinned
+guarantee wording; JSON-LD shape (WebSite + Organization + Product, and **no**
+`offers` / `aggregateRating` / `review` / `price`); and that `deploy.yml`
+stages everything the site needs.
 
 ## Brand
 
-- Business / product name: **PS PynSalf** ("PS" = PynSalf, stated explicitly on the page)
-- Logo mark: `assets/logo-mark.svg` (also used as the favicon artwork, see `assets/favicon.svg`)
-- Product jar photo: `1000254640.png` — PS Skin & Beauty Cream, 350 ml
-- Hero artwork: `assets/hero*.webp` — responsive, full-bleed crops from the supplied homepage reference
-- Container: **350ml jar with a lid**, handmade in small batches, no squeeze tubes
+- Business / product name: **PS PynSalf** — a **350ml topical body-care cream**
+- Never called: ointment, Skin & Beauty Cream, topical ointment, beauty cream,
+  or a treatment/medicine
+- Logo mark: `assets/logo-mark.svg` (also the favicon artwork, see
+  `assets/favicon.svg`; `assets/apple-touch-icon.png` is generated from it)
+- Hero artwork: `assets/hero-waterfall.png` (1672×941) — real product photo of the
+  PS PynSalf 350ml jar beside a waterfall, used as a full-bleed hero background
+  with a sand-coloured gradient behind the copy; the old `assets/hero*.webp` crops
+  had "SHOP NOW" / "Skin & Beauty" baked into the pixels and are no longer
+  referenced. `assets/product-pynsalf.svg` (clean jar illustration) is still used
+  by the Facebook poster. `scripts/check-site.js` asserts the hero `<img>` and the
+  `<link rel="preload">` point at the same file — update both together.
+- Container: **350ml jar with a lid**, hand-filled in small batches, no squeeze tubes
 - Trading since **August 2018** — a one-man show, every jar filled by hand
 - Contact email: `gustavsetzkorn99@gmail.com`
+- Delivery: **within South Africa only**
 
 ## Still needed from the product owner
 
@@ -30,11 +61,13 @@ Nothing is blocking the site. These are the details to add when you have them:
 
 | What | Where it goes | Current wording |
 |---|---|---|
-| Product photo | hero artwork | Included in the supplied `heropage.png` design |
-| Ingredients | About the Ointment | "Full ingredient and product information coming soon." |
-| Price | About the Ointment | "Full product information coming soon." |
-| Directions from the label | How To Use | "Directions will be added from the product label." |
+| Verified ingredient list | Ingredients (`#ingredients`) | "The full list is on the label" + "Ask on WhatsApp" |
+| Directions from the label | How To Use (`#how-to-use`) | Four safety points only; numbered `.step-list` styles are ready for the real steps |
+| Price | About / Contact | not shown |
 | Business / trading hours | Contact section | not shown |
+
+When adding any of these, run `node scripts/check-site.js` afterwards — it
+guards the wording rules.
 
 ## Facebook
 
@@ -48,25 +81,14 @@ https://www.facebook.com/share/19V2pz8Tyz/
 
 Note this is a **share** link, which Facebook intends for sharing rather than as a
 permanent homepage. If you ever get the page's own address
-(`facebook.com/<page-name>`), swap it into both places in `index.html`:
-
-- the `.contact-fb` anchor in the contact list
-- the `.btn-fb` "View on Facebook" button
+(`facebook.com/<page-name>`), swap it into **every** occurrence in `index.html`
+(the `.contact-fb` anchor, the `.btn-fb` "View on Facebook" button, the
+`.proof-community` link, the JSON-LD `sameAs`) **and** the selector
+`a[href="https://www.facebook.com/share/19V2pz8Tyz/"]` in `js/analytics.js` —
+the analytics script matches the exact URL string.
 
 The button blue is `#166fe5`, not Facebook's `#1877f2`, because white text on the
 standard brand blue only reaches 4.23:1 at this button's font size.
-
-## How to replace the product photo
-
-The hero is currently the supplied, responsive design artwork. To replace it,
-export matching desktop and phone crops in WebP format, then update the
-`<picture>` sources and `srcset` in `index.html`. Keep an accessible heading,
-description and keyboard-reachable order link in `.hero-a11y`.
-
-The current art exports are pixel-matched crops of the supplied reference:
-1536×611 for desktop and 930×607 for phones. Their intrinsic proportions are
-preserved by the responsive `<picture>`; replace all matching `srcset` variants
-together so each screen size continues to load the right image.
 
 ## Customer photos
 
@@ -82,7 +104,9 @@ The markup uses `srcset`, so the browser picks the right one automatically.
 
 **The customer photos are never cropped, filtered or resized with a forced aspect
 ratio.** Please keep it that way — they are real people sharing real results. The
-Before/After frames deliberately use plain `width: 100%; height: auto`.
+Before/After frames deliberately use plain `width: 100%; height: auto`, keep the
+intrinsic `width`/`height` attributes, and never carry `style` or `object-fit`
+(`check-site.js` enforces this).
 
 To re-export after a change, resize to 760px wide (860px for the review) and save as
 WebP, then regenerate the smaller variants.
@@ -90,13 +114,15 @@ WebP, then regenerate the smaller variants.
 ## Wording
 
 The copy stays deliberately careful: "soothing", "topical care", "designed for",
-"everyday aches and discomfort". No cure claims, no certifications, no invented
-testimonials or ratings. The customer's review appears as their own screenshot,
-unedited. Add stronger wording only when you can support it.
+"everyday body care". No cure claims, no certifications, no invented testimonials
+or ratings. The customer's review appears as their own screenshot, unedited. Add
+stronger wording only when you can support it.
 
-The hero introduces **PS Skin & Beauty Cream**, with PS PynSalf retained as the
-business name. The separate topical body-care and medical-safety information
-remains in the About and product-information sections.
+The hero introduces **PS PynSalf** with the h1 "Everyday body care." and a lead
+describing it as a **350ml body-care cream** with the customer community behind it
+since August 2018. The product is described as a **350ml body-care cream** (or
+**350ml topical body-care cream** in longer copy) throughout — never as an
+ointment or a Skin & Beauty Cream.
 
 The "Everyday Skin & Body Care, Written Plainly" section deliberately answers
 search-shaped questions (dry skin, skin texture, ageing skin, appearance of fine
@@ -123,8 +149,11 @@ suppress them. They are live:
   the promise to the refund and explicitly disclaims any outcome claim. **Do not
   remove it.**
 
-Both are pinned verbatim by the static checker, so they cannot be reworded by
-accident.
+Both are pinned by `scripts/check-site.js`, so they cannot be reworded by accident.
+
+The customer-proof strip above the fold repeats the same four figures (Aug 2018,
+±5,000 clients, 7 refunds, 100% guarantee) as **business history**, explicitly not
+as product claims. Keep that framing.
 
 ### Deliberately not published
 
@@ -151,21 +180,46 @@ npx serve .
 
 ## Testing
 
-There is no test runner in the repo, to keep it dependency-free. Before publishing, check the site at 360px, 390px, 430px, 768px, 1024px, 1440px
+Static checks first (this is what the deploy workflow runs):
+
+```bash
+node scripts/check-site.js
+```
+
+Then check the site at 360px, 390px, 430px, 768px, 1024px, 1440px
 and 1920px wide:
 
 - no sideways scrolling
 - the four customer photos and the review screenshot show in full, uncropped
-- the menu opens and closes on a phone
+- the menu opens and closes on a phone; the static desktop nav appears from 1024px up
 - the WhatsApp, phone and email buttons all work
-- the floating WhatsApp button does not sit on top of any text
+- the floating WhatsApp button stays visible on a phone and never sits on top of text
 
 ## Contact details
 
-- WhatsApp: https://wa.me/27723973400 (shown as 072 397 3400)
-  Prefilled message: "Hi, I'd like to know more about PS PynSalf."
-- Phone: tel:0723973400 — local format, so it dials correctly on a South African handset
+- WhatsApp: https://wa.me/27665703425 (shown as 066 570 3425)
+  Prefilled message (the one `check-site.js` pins):
+  "Hi Gus, I found PS PynSalf online and would like to know more or place an order
+  for a 350ml jar."
+  Every WhatsApp CTA on the site carries this exact message, and the visible label
+  is **"Order on WhatsApp"** (the Ingredients card uses "Ask on WhatsApp").
+- Phone: tel:+27665703425 — international format, so it dials correctly anywhere
+- Display number: 066 570 3425
 - Email: gustavsetzkorn99@gmail.com
+- Facebook: https://www.facebook.com/share/19V2pz8Tyz/
+
+`js/analytics.js` instruments these exact href prefixes:
+
+```
+a[href^="https://wa.me/27665703425"]   -> whatsapp_click
+a[href^="tel:+27665703425"]            -> phone_click
+a[href^="mailto:gustavsetzkorn99@gmail.com"] -> email_click
+a[href="https://www.facebook.com/share/19V2pz8Tyz/"] -> facebook_click
+```
+
+If the number ever changes again, update all of these together — `check-site.js`
+fails the deploy if any WhatsApp/telephone href, the JSON-LD `contactPoint` or an
+analytics selector drifts from the pinned values.
 
 ## SEO metadata
 
@@ -183,8 +237,23 @@ Facebook and WhatsApp do not render SVG previews. The checker enforces `.png` an
 that the file exists. Regenerate it with the `ogimage.js` script kept outside the
 repo if the jar artwork or wording changes.
 
-The JSON-LD `@graph` deliberately contains **no** `offers`, `aggregateRating`,
-`review` or postal address, because no price, ratings or address have been
-confirmed. That means no rich product result in Google — that is the honest
-trade-off, and adding those fields without real data would be a fabricated
-structured-data claim.
+`assets/apple-touch-icon.png` is generated from `assets/logo-mark.svg` (see the
+temporary `make-icon.js` recipe if it ever needs regenerating: sharp, 180x180,
+flattened onto the brand green `#1f4d3d`, because Apple touch icons ignore
+transparency).
+
+The JSON-LD `@graph` contains `WebSite`, `Organization` (foundingDate 2018-08,
+phone +27665703425, Facebook in `sameAs`) and `Product`. It deliberately contains
+**no** `offers`, `aggregateRating`, `review` or price, because no price, ratings or
+address have been confirmed. That means no rich product result in Google — that is
+the honest trade-off, and adding those fields without real data would be a
+fabricated structured-data claim.
+
+## Privacy & analytics
+
+`privacy.html` is the opt-out page: it explains what the analytics worker records
+(page views and WhatsApp/phone/email/Facebook clicks, by date, broad device type
+and country), that only a keyed HMAC of the browser identifier is stored, and it
+lets the visitor flip `ps_analytics_opt_out` in this browser. `js/analytics.js` and
+`js/admin-config.js` implement that design; do not change the localStorage key
+without updating both the script and the privacy page.

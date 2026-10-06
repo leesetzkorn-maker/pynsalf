@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="title desc">
+  <title id="title">PS PynSalf natuurlike liggaamsorg</title>
+  <desc id="desc">Afrikaanse Facebook en WhatsApp advertensie vir PS PynSalf.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f7f2e8"/>
+      <stop offset="1" stop-color="#e6eee4"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#153e30"/><stop offset="1" stop-color="#27634d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#18362a" flood-opacity=".18"/>
+    </filter>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2" fill="#c7934b" opacity=".35"/></pattern>
+  </defs>
+
+  <rect width="1080" height="1350" fill="url(#bg)"/>
+  <rect width="1080" height="1350" fill="url(#dots)" opacity=".32"/>
+  <path d="M0 84C210 15 399 90 516 0H0Z" fill="#d4e4d6" opacity=".8"/>
+  <path d="M1080 1050C879 986 760 1094 622 1350H1080Z" fill="#d2e5d6" opacity=".72"/>
+
+  <g transform="translate(70 74)">
+    <circle cx="51" cy="51" r="49" fill="#153e30"/>
+    <circle cx="51" cy="51" r="41" fill="none" stroke="#d6a75d" stroke-width="2"/>
+    <text x="51" y="63" text-anchor="middle" font-family="Georgia,serif" font-size="52" font-weight="700" fill="#fffdf7">PS</text>
+    <text x="124" y="43" font-family="Georgia,serif" font-size="37" font-weight="700" fill="#153e30">PYNSALF</text>
+    <text x="126" y="75" font-family="Arial,sans-serif" font-size="17" letter-spacing="3" fill="#6b745e">NATUURLIKE LIGGAAMSORG</text>
+  </g>
+
+  <text x="70" y="250" font-family="Georgia,serif" font-size="65" font-weight="700" fill="#153e30">Natuurlike sorg</text>
+  <text x="70" y="322" font-family="Georgia,serif" font-size="65" font-weight="700" fill="#153e30">vir jou roetine</text>
+  <text x="74" y="374" font-family="Arial,sans-serif" font-size="27" fill="#466353">Handgemaak met sorg in klein hoeveelhede.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="432" width="550" height="362" rx="30" fill="#fffdf8"/>
+    <text x="112" y="495" font-family="Arial,sans-serif" font-size="29" font-weight="700" fill="#153e30">Eenvoudige, alledaagse liggaamsorg</text>
+    <g font-family="Arial,sans-serif" font-size="27" fill="#354e40">
+      <text x="115" y="568">✓  Natuurlike bestanddele</text>
+      <text x="115" y="628">✓  Wend maklik direk op die vel aan</text>
+      <text x="115" y="688">✓  Handgemaak in Suid-Afrika sedert 2018</text>
+      <text x="115" y="748">✓  Ruim 350 ml pot</text>
+    </g>
+  </g>
+
+  <g transform="translate(556 330) scale(.72)" filter="url(#shadow)">
+    <image href="product-pynsalf.svg" width="640" height="800"/>
+  </g>
+
+  <rect x="0" y="940" width="1080" height="308" fill="url(#band)"/>
+  <text x="70" y="1009" font-family="Georgia,serif" font-size="42" font-weight="700" fill="#fffdf7">Bestel direk via WhatsApp</text>
+  <text x="70" y="1083" font-family="Arial,sans-serif" font-size="54" font-weight="700" fill="#f0c67e">066 570 3425</text>
+  <line x1="70" y1="1115" x2="1010" y2="1115" stroke="#d6a75d" stroke-opacity=".7"/>
+  <text x="70" y="1172" font-family="Arial,sans-serif" font-size="29" fill="#fffdf7">www.pynsalf.co.za</text>
+  <text x="70" y="1224" font-family="Arial,sans-serif" font-size="20" fill="#dbe8de">PS PynSalf is ’n liggaamsorgproduk en nie ’n medisyne nie.</text>
+
+  <g transform="translate(926 1030)">
+    <circle cx="56" cy="56" r="56" fill="#f0c67e"/>
+    <path d="M30 26c-17 17-17 44 0 61 11 11 27 14 41 9l16 7-7-16c6-15 3-32-9-43-17-17-44-17-61 0m12 13c10-10 26-10 36 0s10 26 0 36" fill="none" stroke="#153e30" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
