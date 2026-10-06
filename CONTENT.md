@@ -52,7 +52,7 @@ stages everything the site needs.
   `<link rel="preload">` point at the same file — update both together.
 - Container: **350ml jar with a lid**, hand-filled in small batches, no squeeze tubes
 - Trading since **August 2018** — a one-man show, every jar filled by hand
-- Contact email: `gustavsetzkorn99@gmail.com`
+- Contact email: `pynsalf00@gmail.com`
 - Delivery: **within South Africa only**
 
 ## Still needed from the product owner
@@ -205,7 +205,7 @@ and 1920px wide:
   is **"Order on WhatsApp"** (the Ingredients card uses "Ask on WhatsApp").
 - Phone: tel:+27665703425 — international format, so it dials correctly anywhere
 - Display number: 066 570 3425
-- Email: gustavsetzkorn99@gmail.com
+- Email: pynsalf00@gmail.com
 - Facebook: https://www.facebook.com/share/19V2pz8Tyz/
 
 `js/analytics.js` instruments these exact href prefixes:
@@ -213,7 +213,7 @@ and 1920px wide:
 ```
 a[href^="https://wa.me/27665703425"]   -> whatsapp_click
 a[href^="tel:+27665703425"]            -> phone_click
-a[href^="mailto:gustavsetzkorn99@gmail.com"] -> email_click
+a[href^="mailto:pynsalf00@gmail.com"] -> email_click
 a[href="https://www.facebook.com/share/19V2pz8Tyz/"] -> facebook_click
 ```
 

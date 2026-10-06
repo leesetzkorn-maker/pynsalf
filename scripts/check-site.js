@@ -21,7 +21,7 @@ const WA_NUMBER = '27665703425';
 const WA_TEXT = 'Hi Gus, I found PS PynSalf online and would like to know more or place an order for a 350ml jar.';
 const WA_URL_PREFIX = 'https://wa.me/' + WA_NUMBER + '?text=';
 const TEL = 'tel:+27665703425';
-const MAILTO = 'mailto:gustavsetzkorn99@gmail.com';
+const MAILTO = 'mailto:pynsalf00@gmail.com';
 const FACEBOOK = 'https://www.facebook.com/share/19V2pz8Tyz/';
 
 const failures = [];
@@ -376,7 +376,7 @@ check(indexVisible.includes(TEL), 'tel:+27665703425 link present');
 check(indexVisible.includes('066 570 3425'), 'display number 066 570 3425 present');
 check(!/072[ -]?397[ -]?3400|27723973400/.test(indexVisible),
   'no old contact number remains in index.html');
-check(indexVisible.includes(MAILTO), 'mailto:gustavsetzkorn99@gmail.com link present');
+check(indexVisible.includes(MAILTO), 'mailto:pynsalf00@gmail.com link present');
 const fbAnchors = indexAnchors.filter((a) => a.href === FACEBOOK);
 check(fbAnchors.length >= 2, 'Facebook page link used at least twice (found ' + fbAnchors.length + ')');
 check(indexVisible.indexOf('https://www.facebook.com/share/') === indexVisible.lastIndexOf('https://www.facebook.com/share/') ||
@@ -386,7 +386,7 @@ check(indexVisible.indexOf('https://www.facebook.com/share/') === indexVisible.l
 // analytics.js selectors must still match real hrefs on the page
 check(analyticsJs.indexOf('a[href^="https://wa.me/27665703425"]') !== -1 &&
       analyticsJs.indexOf('a[href^="tel:+27665703425"]') !== -1 &&
-      analyticsJs.indexOf('a[href^="mailto:gustavsetzkorn99@gmail.com"]') !== -1 &&
+      analyticsJs.indexOf('a[href^="mailto:pynsalf00@gmail.com"]') !== -1 &&
       analyticsJs.indexOf('a[href="https://www.facebook.com/share/19V2pz8Tyz/"]') !== -1,
   'analytics.js selectors still match the live link formats');
 check(/tel:\+27665703425/.test(analyticsJs) && /27665703425/.test(analyticsJs),

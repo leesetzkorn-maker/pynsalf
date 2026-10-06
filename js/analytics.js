@@ -28,7 +28,7 @@
   var allowedLinks = [
     { selector: 'a[href^="https://wa.me/27665703425"]', event: 'whatsapp_click' },
     { selector: 'a[href^="tel:+27665703425"], a[href^="tel:0665703425"]', event: 'phone_click' },
-    { selector: 'a[href^="mailto:gustavsetzkorn99@gmail.com"]', event: 'email_click' },
+    { selector: 'a[href^="mailto:pynsalf00@gmail.com"]', event: 'email_click' },
     { selector: 'a[href="https://www.facebook.com/share/19V2pz8Tyz/"]', event: 'facebook_click' },
   ];
 
