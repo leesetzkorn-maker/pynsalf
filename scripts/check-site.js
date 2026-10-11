@@ -18,7 +18,7 @@ const ROOT = path.resolve(__dirname, '..');
 const SITE = 'https://pynsalf.co.za';
 const OLD_SITE = 'leesetzkorn-maker.github.io/pynsalf';
 const WA_NUMBER = '27665703425';
-const WA_TEXT = 'Hi Gus, I found PS PynSalf online and would like to know more or place an order for a 350ml jar.';
+const WA_TEXT = 'Hi Gus, I saw your R350 offer including a 350ml cream, free consultation and delivery. I would like to start my free consultation.';
 const WA_URL_PREFIX = 'https://wa.me/' + WA_NUMBER + '?text=';
 const TEL = 'tel:+27665703425';
 const MAILTO = 'mailto:pynsalf00@gmail.com';
@@ -243,8 +243,7 @@ check(/aria-controls="primary-nav"/.test(indexHtml), 'nav toggle references prim
 check(/id="proof"/.test(indexHtml) && /id="benefits"/.test(indexHtml) &&
       /id="about"/.test(indexHtml) && /id="ingredients"/.test(indexHtml) &&
       /id="how-to-use"/.test(indexHtml) && /id="reviews"/.test(indexHtml) &&
-      /id="guarantee"/.test(indexHtml) && /id="skin-body-care"/.test(indexHtml) &&
-      /id="body-care"/.test(indexHtml) && /id="maker"/.test(indexHtml) &&
+      /id="guarantee"/.test(indexHtml) && /id="ordering"/.test(indexHtml) && /id="maker"/.test(indexHtml) &&
       /id="contact"/.test(indexHtml),
   'all planned section ids are present');
 
@@ -357,7 +356,8 @@ check(waAnchors.length >= 6, 'index.html has ' + waAnchors.length + ' WhatsApp l
 let waOk = true;
 waAnchors.forEach((a) => {
   const expected = WA_URL_PREFIX + encodeURIComponent(WA_TEXT);
-  if (a.href !== expected) {
+  const ingredientRequest = WA_URL_PREFIX + encodeURIComponent('Hi Gus, please send me the ingredient label for the cream you propose before I order.');
+  if (a.href !== expected && a.href !== ingredientRequest) {
     waOk = false;
     fail('WhatsApp href is not the canonical message: ' + a.href);
   }
@@ -372,8 +372,8 @@ waAnchors.forEach((a) => {
 });
 if (waOk && waAnchors.length) pass('all WhatsApp links use the canonical message + safe rel attributes');
 
-const orderLabels = waAnchors.filter((a) => /order on whatsapp/i.test(a.text)).length;
-check(orderLabels >= 5, 'at least 5 WhatsApp CTAs are labelled "Order on WhatsApp" (found ' + orderLabels + ')');
+const orderLabels = waAnchors.filter((a) => /start my free consultation/i.test(a.text)).length;
+check(orderLabels >= 5, 'at least 5 WhatsApp CTAs are labelled "Start My Free Consultation" (found ' + orderLabels + ')');
 
 check(indexVisible.includes(TEL), 'tel:+27665703425 link present');
 indexAnchors.concat(privacyAnchors).forEach((anchor) => {
